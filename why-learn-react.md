@@ -88,7 +88,7 @@ btnDecreaseTwo.onclick = function() {
 * 가상 돔의 사용으로 DOM 업데이트 최적화
 
 리액트는 개발자들이 DOM 업데이트를 위해서 하는 최적화 행위를 가상 돔을 만들어 비교하고 DOM을 추상화 하여 필요한 부분만 다시 그리는 방식으로 개발자들이 DOM 업데이트를 오용하는 일을 피했습니다.  
-[https://www.youtube.com/watch?v=BYbgopx44vo](https://www.youtube.com/watch?v=BYbgopx44vo)
+[https://youtu.be/BYbgopx44vo](https://youtu.be/BYbgopx44vo)
 
 * 컴포넌트 기반 
 
