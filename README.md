@@ -40,8 +40,9 @@ ES6에 대한 학습
 * [리액트를 왜 배우니 ?](why-learn-react.md)
 * [CRA를 활용한 5분만에 리액트 클라이언트 앱 만들기](https://ljh86029926.gitbook.io/codingapple-react-class/create-reactapp-using-cra-5min)
 * [CRA 리액트 프로젝트 환경설정](create-reactapp-using-cra-5min.md#undefined-1)
+* Props와 State에 대해 알아보기
 * 컴포넌트 생성해보기
-* Props, State, LifeCycle api 간단 학습
+* 컴포넌트 생성 주기에 따른 LifeCycle API 알아보기
 * 전화번호부 만들기 \(생성, 수정, 삭제, 검색\) 
 * [ ] React 꾸미기
   * CRA에 sass, scss 주입 방법
