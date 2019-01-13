@@ -8,6 +8,8 @@ description: 리액트 어플리케이션 만들기
 
 [create-react-app](https://github.com/facebook/create-react-app) 이라는 페이스북에서 제공하는 리액트 보일러플레이트를 이용해서 리액트 앱을 만들어 보도록 하겠습니다.
 
+### npx를 통해 create-react-app으로 react app 설치하기
+
 우선 작업을 위한 폴더 한개를 만들어 주세요! 리액트 공부 자료를 모아놓는 그런 공간이라고 생각하셔도 됩니다. 물론 그런 폴더 없이 그냥 만들어도 되지만 그래도 공부 자료 모아놓는 폴더가 있으면 앞으로도 프로젝트 많이 생성할텐데 편하실 것이라고 생각합니다.
 
 ![&#xC800;&#xB294; &#xD3F4;&#xB354; &#xB9CC;&#xB4E4;&#xC5B4; &#xB1A8;&#xC5B4;&#xC694;](.gitbook/assets/2019-01-13-10.11.02.png)
@@ -37,6 +39,47 @@ description: 리액트 어플리케이션 만들기
 지금 보시면 You can view first-app in the browser 라는 문구 밑에 local: http://localhost:3000 이라는 주소가 보일 텐데 여기로 들어가 줍시다. 아 한가지 단점은 현재의 CRA 버전은 IE를 지원하지 않습니다. 그래서 IE로는 접속하지 말아주세요. 개발환경은 크롬을 권장드립니다.
 
 ![&#xBA87; &#xAC1C;&#xC758; &#xD130;&#xBBF8;&#xB110; &#xBA85;&#xB839;&#xB9CC;&#xC73C;&#xB85C; React application&#xC744; &#xB9CC;&#xB4E4;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-13-10.41.04.png)
+
+### 필요없는 파일 정리하기
+
+거의 다 왔습니다. 사실 우리는 한게 없어요. 리액트에서 기본 제공하는 모듈을 통해 프로그램을 받고 실행시키기만 했습니다. 우리는 리액트를 이제부터 공부하기 위해서 쓸떼없는 파일을 정리해 보도록 하겠습니다.
+
+src에 있는 파일들 정리해 주겠습니다. 우선 제가 얘기하는 파일들을 src에서 전부 삭제해 주세요.
+
+* App.test.js - 우리의 목표는 리액트 컴포넌트 단위 테스트가 아닙니다.
+* index.css - 여기에 무엇을 작성할 일이 없을 겁니다.
+* logo.svg - 리액트 기본 로고 파일입니다.
+* serviceWorker.js - 웹을 앱 처럼 동작할 수 있게 해주는 놀라운 파일입니다만, 우리에게는 아직 필요가 없습니다.
+
+![&#xAE54;&#xB054;&#xD574; &#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-14-1.14.46.png)
+
+이제 이 상태로 `yarn start`or`npm run start`를 실행하게 되면 오류가 나게 됩니다.
+
+![&#xC774; &#xC624;&#xB958; &#xB9D0;&#xACE0;&#xB3C4; &#xC2E4;&#xC81C;&#xB85C; &#xB9CE;&#xC740; &#xD30C;&#xC77C;&#xC774; &#xC5C6;&#xC5B4;&#xC84C;&#xC73C;&#xB2C8; &#xC774; &#xC810;&#xC744; &#xACE0;&#xCE60; &#xB54C; &#xAE4C;&#xC9C0;&#xB294; &#xB9AC;&#xC561;&#xD2B8;&#xB294; &#xB3D9;&#xC791;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-14-1.17.00.png)
+
+오류를 하나하나 없애 보도록 하겠습니다. 우선은 시작해야 하니까요. index.js 파일에 들어가 주세요.
+
+![&#xC774;&#xB807;&#xAC8C; &#xC0DD;&#xACBC;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-14-1.18.03.png)
+
+![&#xC774;&#xB807;&#xAC8C; &#xBC14;&#xAFB8;&#xC5B4; &#xC90D;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-14-1.18.25.png)
+
+index.css를 import 하고 있는 코드, serviceWorker를 import 하고 있는 코드를 없애 주었습니다. 하지만 우리는 그래도 오류를 마주하게 됩니다.
+
+![&#xC774;&#xBC88;&#xC5D4; App.js &#xD30C;&#xC77C;&#xC744; &#xACE0;&#xCE58;&#xB7EC; &#xAC00;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-14-1.20.13.png)
+
+한가지 덧붙일 말이 있다면, 앞으로 모든 에러가 생겼을 때에 당황하지 말고 왜 이런 에러가 생겼는지 에러 내용을 한 번만 읽어도 어떤 검색 키워드로 구글링을 해야 할 지 눈에 보이게 됩니다. _**에러 코드를 잘 읽어주세요.**_ 무작정 에러라고 겁먹을 필요가 전혀 없습니다.
+
+App.js 파일을 열어 주세요
+
+![html &#xCF54;&#xB4DC;&#xAC19;&#xC544; &#xBCF4;&#xC774;&#xB294; &#xD30C;&#xC77C;&#xC774;&#xB124;&#xC694;](.gitbook/assets/2019-01-14-1.23.04.png)
+
+이 코드에서, 우리는 저 html 같이 보이는 코드와, 위에 logo.svg를 import 하고 있는 부분을 없애 주겠습니다.
+
+![&#xC774;&#xB807;&#xAC8C; &#xBCC0;&#xACBD;&#xD574; &#xC90D;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-14-1.24.39.png)
+
+![&#xC6B0;&#xB9AC;&#xAC00; &#xC6D0;&#xD588;&#xB358; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xB9AC;&#xC561;&#xD2B8; &#xC2E4;&#xD589; &#xD654;&#xBA74;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-13-10.41.18.png)
+
+![&#xC9DC;&#xC794;](.gitbook/assets/2019-01-14-1.25.43.png)
 
 
 
