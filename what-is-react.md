@@ -2,7 +2,7 @@
 description: React.js 라이브러리에 관한 간단한 설명
 ---
 
-# 1. React 기초와 맛보기 - React가 뭐야?
+# 1강 - React가 뭐야?
 
 ### 사용자의 View에만 초점을 둔 Facebook이 개발한 라이브러리
 

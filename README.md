@@ -35,8 +35,8 @@ ES6에 대한 학습
 
 
 * [ ] React 기초와 맛보기 
-* [리액트를 시작하기 전에](1.-react.md)
-* [리액트가 뭐야 ?](1.-react-react.md)
+* [리액트를 시작하기 전에](before-start-class.md)
+* [리액트가 뭐야 ?](what-is-react.md)
 * [리액트를 왜 배우니 ?](why-learn-react.md)
 * CRA를 활용한 5분만에 리액트 클라이언트 앱 만들기
 * CRA 리액트 프로젝트 환경설정
