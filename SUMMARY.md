@@ -6,6 +6,7 @@
 * [1강 - 리액트를 왜 배우니 ?](why-learn-react.md)
 * [1강 - CRA를 활용한 리액트 앱 만들기](create-reactapp-using-cra-5min.md)
 * [1강 - JS, CSS만 있고 HTML은 없나요 ?](where-is-html.md)
+* [1강 - JSX](1-jsx.md)
 * [1강 - Component Of React](component-of-react.md)
 * [1강 - Props와 State](props-and-state.md)
 
