@@ -20,7 +20,7 @@ JS를 이용해서 웹에 동적인 효과를 넣는 것 부터 시작해서, �
 <div>
     <div id="count-container-1">
         <div>
-            <span id="number-1">0</span>
+            <span id="number-1">10</span>
         </div>
         <div>    
             <button id="up-1">Count up !</button>
@@ -29,57 +29,63 @@ JS를 이용해서 웹에 동적인 효과를 넣는 것 부터 시작해서, �
     </div>
     <div id="count-container-2">
         <div>
-            <span id="number-2">0</span>
+            <span id="number-2">10</span>
         </div>
         <div>
             <button id="up-2">Count up !</button>
             <button id="down-2">Count down !</button>
         </div>
     </div>
+    <div id="text-container">
+        <span id="text">Hello Javascript !</span>
+    </div>
 </div>
 ```
 
 ```javascript
-let numberOne = 0;
+let numberOne = 10;
 const numberOneElement = document.getElementById('number-1');
 const increaseOneButton = document.getElementById('up-1');
 const decreaseOneButton = document.getElementById('down-1');
 
-btnIncreaseOne.onclick = function() {
+increaseOneButton.onclick = function() {
   numberOne++;
   numberOneElement.innerText = numberOne;
 }
 
-btnDecreaseOne.onclick = function() {
+decreaseOneButton.onclick = function() {
   numberOne--;
-  elNumberOne.innerText = numberOne;
+  numberOneElement.innerText = numberOne;
 }
 
-let numberTwo = 0;
-var elNumberTwo = document.getElementById('number-2');
-var btnIncreaseTwo = document.getElementById('up-2');
-var btnDecreaseTwo = document.getElementById('down-2');
+let numberTwo = 10;
+const numberTwoElement = document.getElementById('number-2');
+const increaseTwoButton = document.getElementById('up-2');
+const decreaseTwoButton = document.getElementById('down-2');
 
-btnIncreaseTwo.onclick = function() {
+increaseTwoButton.onclick = function() {
   numberTwo++;
-  elNumberTwo.innerText = numberTwo;
+  numberTwoElement.innerText = numberTwo;
 }
 
-btnDecreaseTwo.onclick = function() {
+decreaseTwoButton.onclick = function() {
   numberTwo--;
-  elNumberTwo.innerText = numberTwo;
+  numberTwoElement.innerText = numberTwo;
 }
+
+const textElement = document.getElementById('text');
+textElement.innerText = 'Hello React !';
 ```
 
-지금 보시는 코드의 예제가 좀 극단적이긴 합니다만, Jquery를 이용해 웹을 제작할 경우, 수많은 데이터를 관리하기 위해 DOM에 있는 element를 선택해 가져오고, 이런식으로 변경하게 될 것입니다.
+지금 보시는 코드의 예제가 좀 극단적이긴 합니다만, Jquery를 이용해 웹을 제작할 경우, 수많은 데이터를 관리하기 위해 DOM에 있는 element를 선택해 가져오고, DOM 직접 조작하는 형태로 변경하게 될 것입니다.
 
 직접적으로 DOM조작을 하는 행위는 위험한 행위가 될 수 있습니다.
 
 1. DOM 자체는 느리지 않습니다. 하지만, 그것을 변경한 후 재 렌더링 해 레이아웃을 다시 그리는 경우 DOM은 느려집니다. 특히, 다수의 DOM을 업데이트 하는 경우 DOM의 렌더링 퍼포먼스는 많이 내려갈 것 입니다. DOM은 한번에 전부를 그리는 행동을 빨리 할 수 있지만 특정 element를 선택해서 업데이트 하거나 변경하거나 하는 행동을 하는 것은 느립니다. \(이것은 DOM의 구조가 Tree 구조 때문이기도 합니다\)
 2. InnerHTML을 이용해서 새로운 태그를 생성하거나 넣어줘야 하는 경우, DOM은 이것을 HTML로 재생성 하고 DOM 트리가 reflow\(업데이트\) 되기 때문에 굉장히 느려집니다.
-3. 숙련된 개발자가 아니고서야 DOM 조작을 효율적으로 추상화 해서 처리하는 것은 힘듭니다. \(CSS로 해결할 수 있는 일을 JS를 쓰는 행위\)
+3. 숙련된 개발자가 아니고서야 DOM 조작을 효율적으로 처리하는 것은 힘듭니다. \(CSS로 해결할 수 있는 일을 JS를 쓰는 행위\)
 
-또한 HTML이 커지고 다루어야 하는 데이터가 많아질 수록 JS 코드도 날로 증가하게 되는데, 기존 Jquery를 이용한 개발 방식으로는 프론트엔드 개발자들이 같은 코드를 공유하면서 개발하기 때문에 불편하고, Git 과 같은 프로그램을 이용할 경우 서로의 변경 내용이 꼬이기 쉽습니다. 물론, 서로의 개발 파트를 적절히 분배하고 개발한다면 해결할 수 있는 문제이겠지만, 여젼히 번거롭습니다.
+또한 HTML이 커지고 다루어야 하는 데이터가 많아질 수록 JS 코드도 날로 증가하게 되는데, 기존 Jquery를 이용한 개발 방식으로는 프론트엔드 개발자들이 같은 코드를 공유하면서 개발하기 때문에 불편하고, Git 과 같은 프로그램을 이용할 경우 서로의 변경 내용이 꼬이기 쉽습니다. 디버깅도 어렵습니다. 물론, 서로의 개발 파트를 적절히 분배하고 개발한다면 해결할 수 있는 문제이겠지만, 여젼히 번거롭습니다.
 
 
 
