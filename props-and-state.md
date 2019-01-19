@@ -56,7 +56,7 @@ state나 메소드를 전달하게 되면, 그게 전달받은 컴포넌트에�
 
 ChildApp 컴포넌트에서는 받은 props를 이용해서 데이터를 바인딩 시키고 메소드를 실행 시킬 수 있습니다.
 
-여기서 한 가지 주의해야 할 점이 있다면, 우리가 어떤 Props를 전달받았는지 헷갈릴 때가 분명 있을 것 입니다. 아니면 Props를 전달해주는 컴포넌트에서 다른 이름으로 Props를 전달해 줄 수도 있습니다. 그럴 때 대비할 수 있는 방법이 DefaultProps 입니다.
+여기서 한 가지 주의해야 할 점이 있다면, 우리가 어떤 Props를 전달받았는지 헷갈릴 때가 분명 있을 것 입니다. 아니면 Props를 전달해주는 컴포넌트에서 다른 이름으로 Props를 전달해 줄 수도 있습니다. 그럴 때 대비할 수 있는 방법이 DefaultProps 입니다. ChildApp 컴포넌트 내에 선언해 주세요.
 
 {% code-tabs %}
 {% code-tabs-item title="defaultProps" %}
@@ -71,7 +71,7 @@ static defaultProps = {
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-컴포넌트 클래스 내부에 선언합니다. 만약 제대로 된 Props가 온다면 덮어씌워지고 자동으로 사라지게 됩니다.오류 방지용 코드 입니다.
+컴포넌트 클래스 내부에 선언합니다. 만약 제대로 된 Props가 온다면 덮어씌워지고 자동으로 사라지게 됩니다.오류 방지용 코드 입니다. 오류를 방지할 수 있는 방법에는 componentDidCatch가 있는데요, 이 메소드를 만들지 않고 defaultProps만 제대로 설정해줘도 어느 정도는 막을 수 있습니다. componentDidCatch는 다음 장에 설명하겠습니다.
 
 
 
