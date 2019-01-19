@@ -44,3 +44,17 @@ State는 현재 컴포넌트 내에서 만들어 변경이 가능한 데이터 �
 
 자, 그럼 렌더링 되는 3가지 방식 중에 우리는 2가지 방식을 살펴볼 것 입니다. 마지막 3번 forceUpdate\(\) 메소드는 나중에 여러분이 필요하실 때 사용하게 될 것이므로, 이번 강의에서는 다루지 않겠습니다. \(class property로 선언한 변수를 업데이트 시키고 싶으시다면, forceUpdate를 사용하시면 됩니다.\)
 
+### Props로 전달해 봅시다.
+
+state나 메소드를 전달하게 되면, 그게 전달받은 컴포넌트에서 모두 props 입니다, props의 형태는 함수가 될 수도 있고, 값이 될 수도 있죠. 중요한 것은 Props는 사용이 가능할 뿐 변경은 할 수 없다는 겁니다. 강제로 변경 할 수는 있으나 리액트에서는 이것을 추천하지 않습니다.
+
+![ChildApp&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xC5D0;&#xAC8C; Props&#xB85C; &#xC804;&#xB2EC;&#xD574; &#xC8FC;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-19-4.42.17.png)
+
+이제 ChildApp에서는 전달받은 props인 name \(App 컴포넌트에서는 this.state.myName\), handleClick 메소드를 실행시킬 수 있습니다.
+
+![Child App &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-19-4.46.59.png)
+
+ChildApp 컴포넌트에서는 받은 props를 이용해서 데이터를 바인딩 시키고 메소드를 실행 시킬 수 있습니다.
+
+
+
