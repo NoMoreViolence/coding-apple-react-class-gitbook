@@ -44,6 +44,76 @@ State는 현재 컴포넌트 내에서 만들어 변경이 가능한 데이터 �
 
 자, 그럼 렌더링 되는 3가지 방식 중에 우리는 2가지 방식을 살펴볼 것 입니다. 마지막 3번 forceUpdate\(\) 메소드는 나중에 여러분이 필요하실 때 사용하게 될 것이므로, 이번 강의에서는 다루지 않겠습니다. \(class property로 선언한 변수를 업데이트 시키고 싶으시다면, forceUpdate를 사용하시면 됩니다.\)
 
+### State의 불변성
+
+setState\(\) 메소드는 state안에 있는 깊숙한 object property를 유지해 주면서 업데이트 해 주지 않습니다.
+
+{% code-tabs %}
+{% code-tabs-item title="setState" %}
+```javascript
+state = {
+    helloObject: {
+        hi: 'hello',
+        hello: 'hi'
+    }
+}
+
+this.setState({
+    helloObject: {
+        hello: 'hello'
+    }
+})
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+이 결과로 state는 어떻게 바뀌게 될까요??
+
+{% code-tabs %}
+{% code-tabs-item title="OMG" %}
+```javascript
+// 변화 예상도
+state = {
+    helloObject: {
+        hi: 'hello',
+        hello: 'hello'
+    }
+}
+
+// 실제 값의 변화
+state = {
+    helloObject: {
+        hello: 'hello'
+    }
+}
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+기존에 있었던  helloObject.hi 가 없어져 버렸습니다...!  setState는 깊숙한 object 까지는 관리를 해 주지 못하기 때문에, 우리는 직접 불변성을 지키면서 업데이트 해 주어야 합니다.
+
+{% code-tabs %}
+{% code-tabs-item title="..." %}
+```javascript
+state = {
+    helloObject: {
+        hi: 'hello',
+        hello: 'hi'
+    }
+}
+
+this.setState({
+    helloObject: {
+        ...this.state.helloObject,
+        hello: 'hello'
+    }
+})
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+...this.state.helloObject는 this.state.helloObject의 값들입니다. 그러면 hi: 'hello'와 hello: 'hi'가 오게 되는데요, 여기서 우리는 hello: 'hello'로 변경을 해 주었습니다. ...은 기존의 객체를 풀어 주지만 새로 할당되는 다른 객체가 있다면 덮어씌워집니다. 그렇기 때문에 기존의 hello: 'hi'와 우리가 재 선언하는 hello: 'hello'가 만나도 'hello'로 업데이트가 되게 됩니다.
+
 ### Props로 전달해 봅시다.
 
 state나 메소드를 전달하게 되면, 그게 전달받은 컴포넌트에서 모두 props 입니다, props의 형태는 함수가 될 수도 있고, 값이 될 수도 있죠. 중요한 것은 Props는 사용이 가능할 뿐 변경은 할 수 없다는 겁니다. 강제로 변경 할 수는 있으나 리액트에서는 이것을 추천하지 않습니다.
