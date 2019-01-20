@@ -119,7 +119,7 @@ componentDidUpdate(prevProps, prevState, snapshot) {
 
 ### 컴포넌트에 오류가 발생했을 때 실행되는 메소드
 
-* componentDidCatch..
+* componentDidCatch 첫 번째 렌더링 이후 실행되는 함수입니다
 
 
 
