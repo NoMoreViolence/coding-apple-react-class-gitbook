@@ -2,7 +2,7 @@
 
 * [리액트 강의](README.md)
 * [개념 정립 - Node.js ? npm ?](node.js-npm.md)
-* [개념 정립 - Babel? - 작성 중](babel.md)
+* [개념 정립 - Babel?](babel.md)
 * [개념 정립 - Webpack - 작성 중](webpack.md)
 * [1강 - 사전 준비물](before-start-class.md)
 * [1강 - React가 뭐야?](what-is-react.md)
