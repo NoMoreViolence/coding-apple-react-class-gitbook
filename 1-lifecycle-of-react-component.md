@@ -2,7 +2,7 @@
 description: 리액트 컴포넌트의 라이프사이클
 ---
 
-# 1강 - LifeCycle Of React component
+# 2강 - LifeCycle Of React component
 
 ### 어떻게 컴포넌트가 생겨나고, 어떻게 컴포넌트가 사라지는가
 
