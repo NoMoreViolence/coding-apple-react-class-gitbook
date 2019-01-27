@@ -114,7 +114,7 @@ components폴더의 note-list 파일을 수정해 주세요.
 
 note-list안에 있는 note 컴포넌트를 변경해 주세요.
 
-![note.js](.gitbook/assets/2019-01-27-9.51.03.png)
+![&#xB178;&#xB4DC; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-11.26.10.png)
 
 defaultProps를 통해서 타이틀과 텍스트, 날짜가 props로 담겨 오지 않았을 때의 에러 처리를 해 주고, 각각의 노트는 변경을 하고 삭제를 할 수 있어야 하겠죠? 그래서 수정 모드와 삭제 모드를 껏다 켰다 할 수 있는 state를 생성하고 그것을 변경할 수 있는 메소드를 생성해 주었습니다. 나머지 렌더링 부분은 그저 노트를 꾸미는 JSX 이구요.
 
@@ -336,7 +336,7 @@ App.js 부분에 createNote라는 메소드를 만들고 다음과 같이 작성
 
 note-raw 부분을 만들어 보겠습니다. 이번 컴포넌트는 꽤 길어서 두 개의 사진을 참고하셔야 합니다.
 
-![render &#xBD80;&#xBD84; &#xC804; &#xAE4C;&#xC9C0;&#xC758; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-10.48.11.png)
+![render &#xC804; &#xAE4C;&#xC9C0;&#xC758; note-raw &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-11.11.22.png)
 
 ![render &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-10.49.02.png)
 
@@ -439,7 +439,65 @@ static defaultProps = {
 
 이제 모달을 작성하실 수 있습니다...!
 
+### 노트 편집과 삭제 컴포넌트 만들기 \(1\)
+
 편집과 삭제 부분도 같습니다. Modal 이라는 공통 컴포넌트 안에 보여줄 부분의 컴포넌트를 작성하면 됩니다.
+
+먼저 삭제와 변경도 같습니다. 모든 state는 App.js를 통해서 관리되고 있기 때문에 삭제와 변경 메소드 모두 App.js 컴포넌트 안에서 만들어 져야 합니다.
+
+![&#xBCC0;&#xACBD;, &#xC0AD;&#xC81C; &#xBA54;&#xC18C;&#xB4DC; &#xC785;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-11.09.18.png)
+
+변경과 삭제는, 원래 state에 있는 것을 변경하기 때문에, 몇 번째의 노트인지가 필요하므로, number 라는 것을 받습니다. 우리가 note-raw에서 만들어 두었던 noteNumber가 바로 두 메소드에서의 number 가 되는 것 입니다.
+
+우선 이 만들어진 메소드들을, note-list -&gt; note에서 편집 삭제 버튼을 누를 때 모달과 함께 실행되어야 하기 때문에, 이 메소드를 전달 하도록 하겠습니다.
+
+```markup
+<!-- 기존 -->
+<NoteList 
+    notes={this.state.notes} 
+/>
+<!-- 변경 -->
+<NoteList 
+    notes={this.state.notes} 
+    changeNote={this.changeNote} 
+    deleteNote={this.deleteNote} 
+/>
+```
+
+그리고, NoteList 컴포넌트에서는 다시 전달받은 이 두개의 props를 note로 전달해 주어야 합니다.
+
+```javascript
+const noteListReturn = notes => {
+      return notes.map((note, idx) => {
+        return (
+          <Note
+            key={idx}
+            noteNumber={idx}
+            title={note.title}
+            text={note.text}
+            date={note.date}
+            edited={note.edited}
+            changeNote={this.props.changeNote}
+            deleteNote={this.props.deleteNote}
+          />
+        );
+      });
+    };
+```
+
+changeNote와 deleteNote를 추가 했습니다.
+
+### 노트 편집과 삭제 컴포넌트 만들기 \(2\)
+
+전달해 준 이 메소드를 모달과 함께 보여주어야 합니다.
+
+우리는 Note 메소드를 제작했을 때, edit토글과 delete토글을 제작했었죠? 그리고 이 메소드들이 실행됨에 따라서 edit과 delete state를 변화시켜 주었습니다. 이 메소드를 그대로 전달해 주겠습니다 .
+
+Note 컴포넌트의 render 부분을 다음과 같이 변경해 주세요.
+
+![&#xD3B8;&#xC9D1; &#xBC84;&#xD2BC;&#xC744; &#xD074;&#xB9AD;&#xD558;&#xACE0; &#xB178;&#xD2B8;&#xB97C; &#xBCC0;&#xACBD;&#xD574; &#xC8FC;&#xC138;&#xC694;...!](.gitbook/assets/2019-01-27-11.30.19.png)
+
+
 
 
 
