@@ -234,7 +234,212 @@ const SearchBar = styled.div`
 
 여기까지 완료하고 나면, 예쁜 버튼을 볼 수 있게 됩니다.
 
-![](.gitbook/assets/2019-01-27-10.20.28.png)
+![&#xC608;&#xC05C; &#xBC84;&#xD2BC;&#xC774;&#xB124;&#xC694;.](.gitbook/assets/2019-01-27-10.20.28.png)
+
+지금은 버튼을 눌러도 아무 반응이 없습니다. 버튼을 누르면 작은 모달이 나오도록 해 보겠습니다. 그러기 위해선 우선 모달 컴포넌트를 제작 해야겠죠? 모달은 삭제할 때나, 수정할 때나, 생성할 때나 공통으로 사용할 것이기 때문에 공통의 스타일을 가진 모달 컴포넌트에 내용만 바꾸어 넣는 방식을 이용해서 제작하도록 하겠습니다.
+
+### 모든 작업을 위한 모달 컴포넌트 제작
+
+modal폴더에 modal.scss를 만든 후, modal에 import 시켜 주세요. 다음과 같이 작성해 주세요.
+
+![children?](.gitbook/assets/2019-01-27-10.23.38.png)
+
+```css
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #0000006e;
+
+  .modal-card {
+    background-color: white;
+    border-radius: 0.5rem;
+    position: static;
+
+    @media screen and (max-width: 768px) {
+      width: 300px; /* Could be more or less, depending on screen size */
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1119px) {
+      width: 420px; /* Could be more or less, depending on screen size */
+    }
+
+    @media screen and (min-width: 1120px) {
+      width: 420px; /* Could be more or less, depending on screen size */
+    }
+
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    > div {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    > div:nth-child(1) {
+      margin-top: 0.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    > div:nth-last-child(1) {
+      margin-top: 2rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+```
+
+모달에 생성 폼을 children props로 넣어주면, 모달 컴포넌트에서는 그대로 다시 props로 넘긴 컴포넌트를 렌더링 해 주는 방식입니다. 아직은 children에 대해서 감이 안 잡히시더라도 넘어가도 괜찮습니다. 한 번만 저 컴포넌트를 사용 해 보면 알게 될 테니까요.
+
+이제 App.js에 있는 모달 작성 버튼을 누르면 모달이 나오도록 해 보겠습니다. 우선 메소드를 하나 만들어 주세요.
+
+![modalToogle state&#xB97C; &#xC0DD;&#xC131;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-10.31.06.png)
+
+이제 JSX 부분에 있는 버튼에 onClick 이벤트를 붙여 주세요.
+
+```markup
+<button onClick={this.toogleModal}>노트 작성</button>
+```
+
+이 버튼을 누를 때 마다, modalToogle state는 false와 true를 옮겨 다니게 됩니다. 이제 이 상황에 맞추어서 JSX를 보여주었다 말았다 하는 모달이 필요하겠죠?
+
+![App.js&#xC758; &#xB80C;&#xB354; &#xD568;&#xC218;&#xB97C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xBCC0;&#xACBD; &#xD574; &#xC8FC;&#xC138;&#xC694;.](.gitbook/assets/2019-01-27-10.33.59.png)
+
+추가된 부분은 단 한줄 modalToogle이 true 일 때의 AND연산을 통해서 ModalPage를 보여주는 부분이 있습니다. 한 번 버튼을 눌러 보세요.
+
+![&#xBAA8;&#xB2EC;&#xC774; &#xC5F4;&#xB838;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xC544;&#xBB34;&#xAC83;&#xB3C4; &#xC5C6;&#xC8E0;. &#xC774;&#xC81C; &#xC5EC;&#xAE30;&#xC5D0; &#xBB34;&#xC5B8;&#xAC00;&#xB97C; &#xB123;&#xC5B4;&#xC8FC;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-10.35.10.png)
+
+그 전에, 메소드 부터 만들어야 합니다. 노트 추가 메소드, 이건 굉장히 간단하게 만들 수 있습니다.
+
+App.js 부분에 createNote라는 메소드를 만들고 다음과 같이 작성 해 주세요.
+
+![&#xB178;&#xD2B8;&#xB97C; &#xB9CC;&#xB4ED;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-10.38.17.png)
+
+노트 하나를 제작 하는 데에는 타이틀과 텍스트만 필요하기 때문이에요, 날짜는 자동으로 생성된 시점으로 잡으면 됩니다.
+
+이제 메소드도 만들었겠다. 남은건 note-raw 부분이네요, 수정과 생성에 사용할 부분이죠. 이 컴포넌트는 모달 안에 들어가게 되는 컴포넌트 입니다.
+
+note-raw 부분을 만들어 보겠습니다. 이번 컴포넌트는 꽤 길어서 두 개의 사진을 참고하셔야 합니다.
+
+![render &#xBD80;&#xBD84; &#xC804; &#xAE4C;&#xC9C0;&#xC758; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-10.48.11.png)
+
+![render &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-10.49.02.png)
+
+```css
+#note-what-for {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.5rem;
+  font-weight: normal;
+
+  > span:nth-last-child(1) {
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.25s;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+#note-form {
+  display: flex;
+  flex-direction: column;
+
+  #note-title {
+    margin-bottom: 1rem;
+    border: 1px solid #c2c2c2;
+    padding: 0.5rem;
+    outline: none;
+
+    font-size: 1.2rem;
+    font-weight: 300;
+  }
+
+  #note-text {
+    border: 1px solid #c2c2c2;
+    padding: 0.5rem;
+    resize: vertical;
+    outline: none;
+
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+#add-or-change-note-button {
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.25s;
+  }
+}
+```
+
+이 긴 컴포넌트를 힘들게 작성하는 이유는, 이 컴포넌트는 나중에 수정을 할 때에도 같이 사용할 예정이기 때문입니다.
+
+App.js에 있는 Modal JSX 부분을 다음과 같이 바꾸어 주세요.
+
+```javascript
+ {this.state.modalToogle && (
+     <ModalPage>
+         <NoteRaw />
+     </ModalPage>
+)}
+```
+
+이 상태로 실행을 해 보면 드디어 기다리고 기다리던 노트 생성 장면이 나오게 됩니다.
+
+![&#xAE00;&#xC790;&#xB294; &#xC81C;&#xAC00; &#xB9D8;&#xB300;&#xB85C; &#xC801;&#xC5B4;&#xC11C; &#xADF8;&#xB807;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-10.53.06.png)
+
+그런데 지금 상태에서는 close나 action과 같은 props 함수들을 넣어주지 않았기 때문에 생성할 수는 없고, 액션 props를 넣어주어야 합니다.
+
+```javascript
+static defaultProps = {
+    title: '',
+    text: '',
+    subject: '노트 작성',
+    key: -1,
+    action: () => console.log('Action이 존재하지 않습니다'),
+    close: () => console.log('Close가 존재하지 않습니다')
+};
+```
+
+지금 현재 raw 컴포넌트에서 사용되는 props는 다음과 같은데, key, title, text는 생성할 때 필요한 것이 아닌 수정할 때 필요한 요소입니다. 그래서 생성을 할 때는 action과 close만 신경을 써 주면 됩니다. action에는 App.js에서 만들어 두었던 모달 생성 메소드를 넣으면 될 것이구요. close는 생성 모달을 true : false 값을 바꾸어 주던 메소드를 넣으면 될 것 같습니다. JSX부분에 메소드를 넣어 작성해 주세요.
+
+```markup
+ <NoteRaw action={this.createNote} close={this.toogleModal} />
+```
+
+이제 모달을 작성하실 수 있습니다...!
+
+편집과 삭제 부분도 같습니다. Modal 이라는 공통 컴포넌트 안에 보여줄 부분의 컴포넌트를 작성하면 됩니다.
 
 
 
