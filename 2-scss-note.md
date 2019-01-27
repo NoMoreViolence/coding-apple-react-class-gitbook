@@ -214,7 +214,7 @@ const SearchBar = styled.div`
 
 이 styled-component를 App.js의 부분에 넣어 주세요. 이미 만들어져 있는 변수들 밑에 넣는 방식으로 넣으면 간편하겠죠?
 
-![&#xC774;&#xB807;&#xAC8C; &#xC774;&#xBBF8; &#xC791;&#xC131;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xBD80;&#xBD84; &#xBC11;&#xC5D0; &#xBD99;&#xC5EC;&#xB123;&#xC5B4; &#xC90D;&#xB2C8;&#xB2E4;. &#xBCF4;&#xAE30;&#xB3C4; &#xD3B8;&#xD558;&#xC8E0;.](.gitbook/assets/2019-01-27-10.13.41.png)
+![&#xC774;&#xBBF8; &#xC791;&#xC131;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xBD80;&#xBD84; &#xBC11;&#xC5D0; &#xB123;&#xC5B4;&#xC90D;&#xB2C8;&#xB2E4;. &#xBCF4;&#xAE30;&#xC5D0;&#xB3C4; &#xD3B8;&#xD569;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-12.05.50.png)
 
 이제, 이 만들어진 styled-component를 이용해 JSX 작업을 시작해 보겠습니다.
 
@@ -551,6 +551,38 @@ css 파일도 작성해서 넣어 주겠습니다.
 이제 Note.js에 연결만 해주면 됩니다. 편집 모달을 넣어준 것과 같이 삭제 모달도 넣어 주세요.
 
 ![&#xC0AD;&#xC81C;&#xD558;&#xAE30;, &#xC815;&#xC0C1; &#xC791;&#xB3D9;..!](.gitbook/assets/2019-01-27-11.41.06.png)
+
+### 검색, 마지막 컴포넌트 만들기
+
+상단에 제작하기 버튼 옆에 Input 박스를 두어 그 인풋 박스의 내용대로 정렬을 해 보도록 하겠습니다.
+
+우선, 데이터는 App.js를 통해야만 합니다. search 컴포넌트와 note-list가 직접적으로 서로간 state를 주고받을 수 있는 방법이 없기 때문입니다. App.js 컴포넌트에 메소드를 한개 더 추가해 보도록 하겠습니다.
+
+![onChangeSearchText &#xBA54;&#xC18C;&#xB4DC;](.gitbook/assets/2019-01-27-11.53.39.png)
+
+이 메소드와 search메소드 를 SearchBar의 컴포넌트의 props로 전달해 주기 전에,  SearchBar 컴포넌트를 먼저 만들겠습니다.
+
+![searchBar &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-27-12.03.39.png)
+
+이제 이 컴포넌트와 App.js에 있는 `<div id="search-bar"></div>` 부분과 바꾸어 넣어 주도록 하겠습니다.
+
+![Styled-component&#xC758; &#xC774;&#xB984;&#xACFC; &#xACB9;&#xCCD0;&#xC11C; &#xB2E4;&#xB978; &#xC774;&#xB984;&#xC73C;&#xB85C; import &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-12.04.16.png)
+
+![&#xB178;&#xD2B8; &#xB9CC;&#xB4E4;&#xAE30;](.gitbook/assets/2019-01-27-12.06.39.png)
+
+검색 UI는 구현이 잘 되어서 App에 있는 search State까지 잘 바뀌는데, 검색 처리는 되지 않습니다. 이제 Note-list에 바인딩을 시켜 줄 차례입니다.
+
+![search&#xB97C; &#xBC14;&#xC778;&#xB529; &#xC2DC;&#xCF1C; &#xC90D;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-12.08.52.png)
+
+Note-list의 렌더링 부분을 search에 따라서 변경될 수 있도록 해 줍니다.
+
+![&#xC544;&#xAE4C; &#xADF8;&#xB0E5; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xB0B4;&#xB824;&#xC8FC;&#xB294; &#xAC83; &#xACFC;&#xB294; &#xB2E4;&#xB985;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-27-12.13.15.png)
+
+우선 map을 통해 모든 요소를 통과하면서 idx를 추가합니다. 왜냐하면 이게 없이 필터링 된 번호로 삭제를 하게 된다면 엉뚱한 요소가 없어질 수도 있기 때문입니다. 그 후에 필터를 거쳐 props.search에 따라 없애 준 후, noteListReturn에서 아까와 같이 렌더링을 해 줍니다.
+
+### 완성!
+
+수고하셨습니다 :\)
 
 
 
