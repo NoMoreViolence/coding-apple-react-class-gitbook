@@ -20,7 +20,7 @@ create-react-app이 전부 설치되었으면, 이제 프로젝트 폴더로 들
 
 설치가 전부 완료되었다면 이제 프로젝트를 시작해 볼 준비가 되었네요. 우선 프로젝트를 깔끔하게 만들어 주겠습니다. 처음 Create-react-app을 만들고 우리가 사용하지 않는 파일을 지워준 것 처럼 프로젝트 구조를 깔끔하게 만들어 주세요.
 
-![&#xC4F0;&#xC9C0;&#xC54A;&#xB294; &#xD30C;&#xC77C;&#xC740; &#xC9C0;&#xC6CC;&#xC90D;&#xB2C8;&#xB2E4;. &#xBC29;&#xD574;&#xB418;&#xB2C8;&#xAE4C;&#xC694;.](.gitbook/assets/2019-01-27-6.50.18.png)
+![&#x20A9;](.gitbook/assets/2019-01-27-6.50.18.png)
 
 ### 만들 기능들
 
@@ -71,7 +71,7 @@ App.js의 jsx를 변경해 주세요.
 
 이 모듈을 사용해서 스타일링을 하게 되면 일단 빠르게 스타일을 작성할 수 있습니다. 만약 퍼블리셔가 팀 내에 있는 상황이라면 이 모듈을 사용하는 것을 피해야 하겠지만, 스타일을 직접 작성해야 할 경우에는 좋은 선택지가 될 수 있습니다.
 
-### 노트 리스트 컴포넌트 제작하기
+### 노트 리스트 컴포넌트 만들기
 
 이제 기본 틀을 만들어 보았으니, 노트 리스트를 만들고 노트를 보여주는 것을 해 보도록 하겠습니다.
 
@@ -83,9 +83,9 @@ Search 는 검색할 때의 용도로 사용되는 state 입니다. notes는 노
 
 지금은 기본으로 노트 리스트를 보여주기 위해서 더미 데이터를 생성한 것 뿐이고, 나중에 이 데이터들은 지우고 우리가 직접 노트를 생성할 수 있는 형태로 변경할 것 입니다.
 
-components폴더의 note-list 파일을 수정해 주세요 사진과 같이
+components폴더의 note-list 파일을 수정해 주세요.
 
-![Note-list &#xC785;&#xB2C8;&#xB2E4;](.gitbook/assets/2019-01-27-9.28.02.png)
+![Note list](.gitbook/assets/2019-01-27-9.57.26.png)
 
 이 파일에 scss 파일을 생성해 import 해준 후, 지정해 두었던 scss 내용도 넣어 주도록 하겠습니다.
 
@@ -110,9 +110,131 @@ components폴더의 note-list 파일을 수정해 주세요 사진과 같이
 
 검색바는 아직 안만들었다고 쳤으니 상관없고, 노트 리스트가 이렇게 보이는 모습이 저에게는 별로 예뻐 보이지가 않네요. 그래서 제가 처음 컴포넌트를 생성했을 때, note-list와 note 컴포넌트를 제작한 것 입니다. note-list는 각각 note를 전부 관장하는 컴포넌트이고, 각각의 노트들은 note에 의해 관리가 될 수 있도록 구조를 변경해 보겠습니다.
 
-### 노트 컴포넌트 제작하기
+### 노트 컴포넌트 만들기
 
 note-list안에 있는 note 컴포넌트를 변경해 주세요.
+
+![note.js](.gitbook/assets/2019-01-27-9.51.03.png)
+
+defaultProps를 통해서 타이틀과 텍스트, 날짜가 props로 담겨 오지 않았을 때의 에러 처리를 해 주고, 각각의 노트는 변경을 하고 삭제를 할 수 있어야 하겠죠? 그래서 수정 모드와 삭제 모드를 껏다 켰다 할 수 있는 state를 생성하고 그것을 변경할 수 있는 메소드를 생성해 주었습니다. 나머지 렌더링 부분은 그저 노트를 꾸미는 JSX 이구요.
+
+css 파일도 생성해서 넣어 주세요.
+
+```css
+#note {
+  height: 250px;
+  flex-basis: calc(33% - 2rem);
+  margin: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid skyblue;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 6px -6px #777;
+  background-color: #dfe7f2;
+  
+  span {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    }
+
+  #note-menu {
+    display: flex;
+    justify-content: space-between;
+
+    > span:nth-last-child(1) {
+      > span {
+        margin-right: 0.25rem;
+        margin-left: 0.25rem;
+        transition: 0.25s;
+        cursor: pointer;
+      }
+
+      > span:nth-child(1) {
+        &:hover {
+          color: green;
+        }
+      }
+
+      > span:nth-child(2) {
+        &:hover {
+          color: red;
+        }
+      }
+    }
+  }
+  
+   #date {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+```
+
+자, 노트 하나의 컴포넌트를 완성했으니, 이제 아까 note-list에서 보내주던 div 말고 이 컴포넌트로 대체를 해야 합니다.
+
+![Note &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8; &#xC8FC;&#xC785;](.gitbook/assets/2019-01-27-9.58.17.png)
+
+여기까지 잘 따라오셨다면, 이런 모습을 볼 수 있습니다.
+
+![&#xB178;&#xD2B8; &#xB9AC;&#xC2A4;&#xD2B8;&#xC758; &#xB178;&#xD2B8;](.gitbook/assets/2019-01-27-9.59.13.png)
+
+이제 좀 노트같이 보이는 카드 두개가 있네요. 이제 노트 리스트를 봤으니, 노트를 제작해 보는 것을 한 번 해보도록 하겠습니다.
+
+### 노트 생성 컴포넌트 만들기
+
+노트 생성 버튼은 저 헤더위치가 적당할 것 같네요. 그러면, 일단 `id="search-bar"` 인 App.js의 부분을 변경해 보도록 하겠습니다. 저는 이 컴포넌트를 styled-components로 제작하겠습니다. 
+
+```javascript
+const SearchBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+
+  div > span {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+
+  div > button {
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
+    border: 1px solid transparent;
+    outline: none;
+    padding: 0.5rem;
+    transition: 0.25s;
+    color: #28bbf7;
+    background-color: white;
+    cursor: pointer;
+    &:hover {
+      background-color: #28bbf7;
+      color: white;
+    }
+  }
+`;
+```
+
+이 styled-component를 App.js의 부분에 넣어 주세요. 이미 만들어져 있는 변수들 밑에 넣는 방식으로 넣으면 간편하겠죠?
+
+![&#xC774;&#xB807;&#xAC8C; &#xC774;&#xBBF8; &#xC791;&#xC131;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xBD80;&#xBD84; &#xBC11;&#xC5D0; &#xBD99;&#xC5EC;&#xB123;&#xC5B4; &#xC90D;&#xB2C8;&#xB2E4;. &#xBCF4;&#xAE30;&#xB3C4; &#xD3B8;&#xD558;&#xC8E0;.](.gitbook/assets/2019-01-27-10.13.41.png)
+
+이제, 이 만들어진 styled-component를 이용해 JSX 작업을 시작해 보겠습니다.
+
+`id="search-bar"` 인 부분을 다음과 같이 변경해 주세요.
+
+```markup
+<SearchBar>
+  <div>
+    <span>노트 만들기</span>
+  </div>
+  <div>
+    <button>노트 작성</button>
+    <div id="search-bar" />
+  </div>
+</SearchBar>
+```
+
+여기까지 완료하고 나면, 예쁜 버튼을 볼 수 있게 됩니다.
+
+![](.gitbook/assets/2019-01-27-10.20.28.png)
 
 
 
