@@ -497,7 +497,60 @@ Note 컴포넌트의 render 부분을 다음과 같이 변경해 주세요.
 
 ![&#xD3B8;&#xC9D1; &#xBC84;&#xD2BC;&#xC744; &#xD074;&#xB9AD;&#xD558;&#xACE0; &#xB178;&#xD2B8;&#xB97C; &#xBCC0;&#xACBD;&#xD574; &#xC8FC;&#xC138;&#xC694;...!](.gitbook/assets/2019-01-27-11.30.19.png)
 
+지금까지 잘 따라오셨다면 편집 컴포넌트는 정말 잘 작동할 것 이라고생각합니다. 이제 삭제 컴포넌트를 만들어야 할 것 같네요. 삭제는 아직 UI가 구성되지 않았으니까요. 삭제는 추가 & 편집보다 약 5배 정도는 체감상 훨씬 작성하기 쉽게 느껴지실 것 같습니다. 이미 삭제 메소드를 App.js에 작성해 놓았고, 그저 연결만 하면 되는 일이기 때문이죠. 우선 생성해 놓았던 delete 파일을 작성해 보도록 하겠습니다.
 
+![delete.js](.gitbook/assets/2019-01-27-11.39.01.png)
+
+css 파일도 작성해서 넣어 주겠습니다.
+
+```css
+#memo-what-for {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.5rem;
+  font-weight: normal;
+
+  > span:nth-last-child(1) {
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.25s;
+
+    &:hover {
+      color: red;
+    }
+  }
+}
+
+#memo-button {
+  display: flex;
+  justify-content: flex-end;
+
+  > button {
+    border: 1px solid #e24444;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    background-color: white;
+    color: #e24444;
+
+    font-size: 1.1rem;
+    font-weight: normal;
+
+    transition: 0.25s;
+
+    &:hover {
+      background-color: #e24444;
+      color: white;
+    }
+  }
+}
+
+```
+
+이제 Note.js에 연결만 해주면 됩니다. 편집 모달을 넣어준 것과 같이 삭제 모달도 넣어 주세요.
+
+![&#xC0AD;&#xC81C;&#xD558;&#xAE30;, &#xC815;&#xC0C1; &#xC791;&#xB3D9;..!](.gitbook/assets/2019-01-27-11.41.06.png)
 
 
 
