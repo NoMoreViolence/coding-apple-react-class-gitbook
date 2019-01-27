@@ -13,4 +13,6 @@
 * [1강 - Component Of React](component-of-react.md)
 * [1강 - Props와 State](props-and-state.md)
 * [2강 - LifeCycle Of React component](1-lifecycle-of-react-component.md)
+* [2강 - Optimizing of component](2-optimizing-of-component.md)
+* [2강 - scss note](2-scss-note.md)
 
