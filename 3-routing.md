@@ -101,5 +101,35 @@ Link 태그 역시 react-router-dom에서 기본적으로 제공하는 태그 �
 
 ![&#xB9C1;&#xD06C;&#xB97C; &#xD074;&#xB9AD;&#xD560; &#xB54C; &#xB9C8;&#xB2E4; &#xB85C;&#xB529; &#xC5C6;&#xC774; &#xBC14;&#xB85C; &#xD398;&#xC774;&#xC9C0;&#xAC00; &#xBCF4;&#xC5EC;&#xC9D1;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-02-4.33.01.png)
 
+### 특정 링크에 스타일을 넣어주는 NavLink
 
+지금 만들어 실습한 메뉴 같아 보이는 리스트는, 나중에 다른 리액트 웹 페이지를 만들 때에도 메뉴를 넣을 때 이런식으로 Link를 넣어 웹 페이지를 작성할 것 입니다. 그런데 지금은 특정 URL을 클릭해서 들어가도 그 URL을 들어갔다고 사용자가 인지하기 위해서는 보여지는 컴포넌트를 확인해야 합니다. 메뉴에 스타일을 줄 수 있다면 정말 좋겠네요. 그러나 현재 Link 태그를 이용해서 이런 작업을 하기에는 복잡한 면이 있습니다. 하지만 우리의 react-router-dom은 이런 점을 미리 생각해 Link의 업그레이드 버전 같은 느낌인 NavLink 태그를 제공합니다. 이번에는 NavLink를 학습해 보도록 하겠습니다.
+
+우선, NavLink를 import 해 주세요, react-router-dom 모듈에 내장되어 있습니다.
+
+![NavLink](.gitbook/assets/2019-02-02-4.45.23.png)
+
+그리고, 현재 링크로 작성되어 있는 메뉴를 전부 NavLink로 바꾸어 주세요.
+
+![Link to NavLink](.gitbook/assets/2019-02-02-4.46.32.png)
+
+Link에서 NavLink로 바뀐다고 딱히 달라지는 부분은 없습니다. 하지만 NavLink에서 제공하는 속성을 사용하면 이제 달라진 모습을 볼 수 있습니다. 바로 activeStyle과 activeClassName 속성입니다. 리액트 웹의 현재 URL과 to가 가리키는 링크가 일치할 때, activeStyle과 activeClassName이 활성화 됩니다. 일치하지 않으면 사라지구요. 동적으로 링크가 변할 때마다 NavLink가 작동합니다. 정말 사용하기 편합니다. 우선 activeStyle을 사용해 보도록 하겠습니다.
+
+![&#xC2A4;&#xD06C;&#xB9B0;&#xC0F7; &#xBC11;&#xC5D0; &#xC788;&#xB294; JSX&#xB294; &#xADF8;&#xB300;&#xB85C; &#xB450;&#xC2DC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-02-4.51.54.png)
+
+이렇게 만든 후에 웹 페이지를 확인해 보면, 신기하게도 특정 링크를 클릭할 때 마다 스타일이 바뀌는 현상을 볼 수 있습니다.
+
+![&#xD2B9;&#xC815; &#xC2A4;&#xD0C0;&#xC77C;&#xC5D0; &#xB530;&#xB77C; &#xB9C1;&#xD06C; &#xC2A4;&#xD0C0;&#xC77C;&#xC774; &#xBA39;&#xD600; &#xB4E4;&#xC5B4;&#xAC00;&#xB124;&#xC694; !](.gitbook/assets/2019-02-02-4.54.57.png)
+
+한가지 문제가 있다면, 어떤 URL 링크를 클릭 하던지, 메인 링크는 활성화가 되어 있다는 점 인데요, Route태그에서 마주쳤던 문제와 같은 현상입니다. Route 태그에서 이 문제를 해결하기 위해서 exact라는 속성을 태그 내에 삽입하는 방법이 있었는데요, NavLink도 같은 방식으로 해결할 수 있습니다.
+
+![exact&#xB97C; &#xBD99;&#xC5EC; &#xC90D;&#xB2C8;&#xB2E4;. ](.gitbook/assets/2019-02-02-4.56.44.png)
+
+그 후 웹 페이지를 보면 우리가 원했던 효과를 제대로 수행하는 것을 볼 수 있습니다.
+
+![&#xC81C;&#xB300;&#xB85C; &#xC791;&#xB3D9;&#xC744; &#xC798; &#xD558;&#xB124;&#xC694;.](.gitbook/assets/2019-02-02-4.57.35.png)
+
+지금까지 리액트에서 CSR, SSR의 차이, Route와 Switch를 이용한 Client routing에 대해서 알아보았습니다.
+
+다음 장은 지금까지 배웠던 Routing을 이용한 영화 정보 보여주는 페이지를 만들어 보도록 하겠습니다.
 

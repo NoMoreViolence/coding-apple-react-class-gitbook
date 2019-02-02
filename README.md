@@ -48,9 +48,9 @@ ES6에 대한 학습
 * [Styled-component](2-scss-note.md#undefined-4)
 * [리액트 메모장 만들기 \(생성, 수정, 삭제, 검색\)](2-scss-note.md#undefined) 
 * [ ] React로 본격적인 웹앱 만들기
-* CSR은 SSR과 뭐가 다른거지 ?
-* react-router-dom을 이용한 간단한 라우팅 학습
-* NavLink를 통한 특정 라우트 페이지 스타일 주입
+* [CSR은 SSR과 뭐가 다른거지 ?](3.md#undefined)
+* [react-router-dom을 이용한 간단한 라우팅 학습](3.md#browerrouter-csr)
+* [NavLink를 통한 특정 라우트 페이지 스타일 주입](3-routing.md#a-link)
 * 라우팅을 통한 영화 소개 페이지 만들기
 * 1. 전체적인 영화 리스트
   2. 세부 영화 리스트 
