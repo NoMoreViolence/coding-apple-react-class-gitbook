@@ -15,4 +15,6 @@
 * [2강 - LifeCycle Of React component](1-lifecycle-of-react-component.md)
 * [2강 - Optimizing of component](2-optimizing-of-component.md)
 * [2강 - scss note](2-scss-note.md)
+* [3강 - Routing \(준비\)](3.md)
+* [3강 - Routing \(실전\)](3-routing.md)
 

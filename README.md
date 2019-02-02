@@ -32,7 +32,7 @@ ES6에 대한 학습
 
 
 
-* [ ] React 기초와 맛보기 
+* [x] React 기초와 맛보기 
 * [리액트를 시작하기 전에](before-start-class.md)
 * [리액트가 뭐야 ?](what-is-react.md)
 * [리액트를 왜 배우니 ?](why-learn-react.md)
@@ -43,27 +43,21 @@ ES6에 대한 학습
 * [Props와 State에 대해 알아보기](props-and-state.md)
 * [컴포넌트 생성 주기에 따른 LifeCycle API 알아보기](1-lifecycle-of-react-component.md)
 * 전화번호부 만들기 \(생성, 수정, 삭제, 검색\) \(시간이 된다면\) 
-* [ ] React 꾸미기
-* CRA에 sass, scss 주입 방법
-* Styled-component
-* 컴포넌트 스타일링 팁
-* CSS module \(optional\)
-* 리액트 메모장 만들기 \(생성, 수정, 삭제, 검색\) 
+* [x] React 꾸미기
+* [CRA에 sass, scss 주입 방법](2-scss-note.md#undefined-1)
+* [Styled-component](2-scss-note.md#undefined-4)
+* [리액트 메모장 만들기 \(생성, 수정, 삭제, 검색\)](2-scss-note.md#undefined) 
 * [ ] React로 본격적인 웹앱 만들기
-* 라우팅에 관해
-* SPA의 라우팅은 기존 라우팅과 무엇이 다른가 ? \(CSR & SSR\)
+* CSR은 SSR과 뭐가 다른거지 ?
 * react-router-dom을 이용한 간단한 라우팅 학습
-* Link, NavLink를 통한 특정 라우트 페이지 스타일 주입
-* 라우팅을 통한 자기소개서 페이지 만들기
-* 1. 메인 대문 페이지
-  2. 경력 페이지
-  3. 프로젝트 + 세미나 + 각종 세부사항 어필
-* 라우터 코드 스플리팅 \(최적화 + 실무\) 
+* NavLink를 통한 특정 라우트 페이지 스타일 주입
+* 라우팅을 통한 영화 소개 페이지 만들기
+* 1. 전체적인 영화 리스트
+  2. 세부 영화 리스트 
 * [ ] API \(Ajax\) 사용을 통한 데이터 요청 및 핸들링과 State 효율적으로 관리하기
 * Ajax & API \(axios\)
 * API 요청 간단 실습해보기
 * Unsplash API를 이용한 무한 스크롤링 사진첩 만들기
-* 무한 스크롤링 구현하기
 * API 요청으로 추가 데이터 로드하기
 * API 실패 시 에러 핸들링하기
 * 데이터 상태 관리
