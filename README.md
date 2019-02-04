@@ -41,17 +41,17 @@ ES6에 대한 학습
 * [JSX 문법](1-jsx.md)
 * [컴포넌트 생성해보기](component-of-react.md)
 * [Props와 State에 대해 알아보기](props-and-state.md)
-* [컴포넌트 생성 주기에 따른 LifeCycle API 알아보기](1-lifecycle-of-react-component.md)
+* [컴포넌트 생성 주기에 따른 LifeCycle API 알아보기](lifecycle-of-react-component.md)
 * 전화번호부 만들기 \(생성, 수정, 삭제, 검색\) \(시간이 된다면\) 
 * [x] React 꾸미기
-* [CRA에 sass, scss 주입 방법](2-scss-note.md#undefined-1)
-* [Styled-component](2-scss-note.md#undefined-4)
-* [리액트 메모장 만들기 \(생성, 수정, 삭제, 검색\)](2-scss-note.md#undefined) 
+* [CRA에 sass, scss 주입 방법](scss-note.md#undefined-1)
+* [Styled-component](scss-note.md#undefined-4)
+* [리액트 메모장 만들기 \(생성, 수정, 삭제, 검색\)](scss-note.md#undefined) 
 * [ ] React로 본격적인 웹앱 만들기
-* [CSR은 SSR과 뭐가 다른거지 ?](3.md#undefined)
-* [react-router-dom을 이용한 간단한 라우팅 학습](3.md#browerrouter-csr)
-* [NavLink를 통한 특정 라우트 페이지 스타일 주입](3-routing.md#a-link)
-* history를 이용한 이전 페이지로 이동 실습해보기
+* [CSR은 SSR과 뭐가 다른거지 ?](route-prepare.md#undefined)
+* [react-router-dom을 이용한 간단한 라우팅 학습](route-prepare.md#browerrouter-csr)
+* [NavLink를 통한 특정 라우트 페이지 스타일 주입](route-actual.md#a-link)
+* [history를 이용한 이전 페이지로 이동 실습해보기](history-go-and-goback.md) 
 * 라우팅을 통한 한국 전통 음식 소개 페이지 만들기
 * 1. 전체적인 음식 리스트
   2. 세부 음식 정보 
