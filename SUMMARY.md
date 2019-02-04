@@ -17,5 +17,6 @@
 * [2강 - scss note](2-scss-note.md)
 * [3강 - Routing \(준비\)](3.md)
 * [3강 - Routing \(실전\)](3-routing.md)
-* [3강 - 영화 소개 페이지 만들기](untitled.md)
+* [3강 - history를 이용한 뒤로 가기 버튼 구현](3-history.md)
+* [3강 - 한국 전통 음식 소개 페이지 만들기](untitled.md)
 
