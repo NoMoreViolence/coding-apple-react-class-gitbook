@@ -113,7 +113,7 @@ src폴더 내에 food-card.js 파일을 생성해 주세요.
 
 이 카드는 대략적인 음식의 정보를 받아 음식의 이름, 간략한 소개만 보여줄 수 있는 카드 형태의 컴포넌트가 될 예정입니다. food-card.js 컴포넌트를 제작해 보도록 하겠습니다.
 
-![&#xC804;&#xD1B5;&#xC74C;&#xC2DD; &#xCE74;&#xB4DC; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-02-09-4.08.34.png)
+![&#xC804;&#xD1B5;&#xC74C;&#xC2DD; &#xCE74;&#xB4DC; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-02-10-12.45.24%20%281%29.png)
 
 이 컴포넌트는 음식의 자세한 정보를 알기 전, 간략한 정보만을 축약해서 보여줄 수 있는 페이지입니다. 따라서 음식의 이름과, subIntro라는 간단한 소개 글만 있는 컴포넌트 입니다. scss파일도 하나 만들어서 넣어 주세요.
 
@@ -158,11 +158,11 @@ src 폴더에 food-card-list.js 파일을 생성해 주세요.
 
 리스트 컴포넌트를 작성해 보겠습니다.
 
-![&#xC74C;&#xC2DD; &#xB9AC;&#xC2A4;&#xD2B8; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8; &#xC785;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-09-4.13.44.png)
+![&#xCE74;&#xB4DC; &#xB9AC;&#xC2A4;&#xD2B8; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-02-10-12.45.56.png)
 
 리스트 컴포넌트와 카드 컴포넌트를 완성했으니, 남은 것은 App.js에 적용해주는 일이 남았습니다.
 
-![Route](.gitbook/assets/2019-02-09-4.31.26.png)
+![Route&#xB97C; &#xD1B5;&#xD574; &#xC801;&#xC6A9;&#xD558;&#xAE30;, render &#xC0AC;&#xC6A9;](.gitbook/assets/2019-02-10-12.48.45.png)
 
 여기에 지금까지 배웠던 예제와 다른 속성이 Route에 있는 것을 볼 수 있습니다. 바로 render 인데요, 이것을 사용한 이유는, 넘겨주는 컴포넌트인 FoodCardList 컴포넌트가 음식 리스트를 Props로 받기 때문입니다. 
 
@@ -221,11 +221,11 @@ component={컴포넌트 이름} 형태로 출력하게 되면, FoodCardList 컴�
 
 이번 컴포넌트는 제법 깁니다. 그러나 특별한 부분은 render내부에 있는 함수 한 개밖에 없습니다.
 
-![1 ~ 47&#xC904; &#xAE4C;&#xC9C0;](.gitbook/assets/2019-02-09-5.54.04.png)
+![1 ~ 42&#xC904; &#xAE4C;&#xC9C0;](.gitbook/assets/2019-02-10-12.49.40.png)
 
-![28 ~ &#xB05D;&#xAE4C;&#xC9C0;](.gitbook/assets/2019-02-09-5.54.10.png)
+![render&#xBA54;&#xC18C;&#xB4DC; &#xC791;&#xC131; ~  &#xB05D; &#xBD80;&#xBD84; &#xAE4C;&#xC9C0;](.gitbook/assets/2019-02-10-12.50.12.png)
 
-render 함수 내부에 있는 renderText 함수는, 말 그대로 문자열 텍스트를 받아서, 엔터 를 기준으로 배열을 생성한 후, map 함수를 이용해서 문장 하나하나 p태그에 담아서 출력하는 부분입니다. 이 부분이 필요한 이유는, HTML에서 단순 문자열을 출력할 경우에 엔터 개행이 불가능 하기 때문입니다. 이미지를 보여주는 부분 같은 부분은 일전에 만들었던 미리보기 컴포넌트에서 대부분 가져와서 사용했습니다.
+specific 컴포넌트가 받는 props는 App.js에서 다루는 foodData배열의 요소 한 개 입니다. 그래서 데이터를 보여줄 때도 그 객체 내에 있는 데이터를 그대로 보여줍니다. 눈여겨 봐야 할 부분은 render 메소드 부분입니다. render 메소드 내부에 있는 renderText 함수는 말 그대로 문자열 텍스트를 받아서 엔터 를 기준으로 배열을 생성합니다. 그 후, map 함수를 이용해서 문장 하나하나 p태그에 담아서 출력하는 부분을 담당합니다. 이 부분이 필요한 이유는, HTML에서 단순 문자열을 출력할 경우에 엔터 개행이 불가능 하기 때문입니다. 이미지를 보여주는 부분 같은 부분은 일전에 만들었던 미리보기 컴포넌트에서 대부분 가져와서 사용했습니다.
 
 scss파일입니다.
 
@@ -283,13 +283,37 @@ scss파일입니다.
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
+이제 지금 만든 컴포넌트를 App.js 컴포넌트에 적용해야 합니다. App.js에 다음과 같이 타이핑 해 주세요.
 
+![withRouter&#xB97C; &#xC774;&#xC6A9;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-10-12.44.22.png)
+
+우선 기존의 App.js는 history, location 같은 react-router-dom의 props가 필요하지 않았습니다. 하지만 Specific 컴포넌트에게 각각의 음식 데이터를 주기 위해서는 현재 어떤 URL을 가리키는지 알 필요가 있기 때문에 withRouter로 react-router-dom의 props를 가져왔습니다. 당연히 Route로 /food/:foodName으로 들어오는 라우트에는 FoodSpecific 컴포넌트를 render시켜 주었습니다. **이제 어려울 수 있는 부분이 pickData 메소드** 입니다. 이 메소드는 foodData라는 함수 인자를 받습니다. 지금 render부분에서 foodSpecific부분에 props로 활용되는 부분을 보면, pickData메소드가 사용되는 것을 알 수 있습니다. 이 메소드의 인자로는 foodData state가 담겨져 있구요. **pickData에서 사용되는 foodData인자는 this.state.foodData와 동일합니다.** 메소드 내에서는 두 가지 과정을 통해 하나의 foodData객체를 반환합니다.  
+1. 필터링을 통해, 현재 배열 객체의 name과 url의 foodName을 비교해서 같은 값만을 추려냅니다.  
+2. 그렇게 필터링 된 배열의 첫 번째 요소 \(당연히 한 개밖에 없을 것임\)를 리턴합니다.
+
+**본래 foodData의 state는 길이가 3인 배열이고, 각각의 요소는 음식 데이터인데, 그 데이터를 필터링 해서 맞는 객체 한 개만 리턴을 해 준다는 의미 입니다.**
+
+FoodSpecific컴포넌트는 그렇게 받은 데이터를 출력해 주는 것 뿐입니다. 그리고 두 개의 라우트 path가 /foods를 동시에 가지고 있으므로, /foods일 때 FoodCardLIst를 보여주는 라우트에는 exact를 걸어 주었습니다.
+
+#### 기본적인 설정이 전부 완료 되었습니다. 지금 [http://localhost:3000/foods/김치](http://localhost:3000/foods/김치) URL로 접속하게 된다면, foodSpecific컴포넌트를 제대로 볼 수 있을 것 입니다.
+
+![Food specific &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-02-09-11.56.56.png)
 
 ### Redirect 설정하기
 
-//
+http://localhost:3000/foods, http://localhost:3000/foods/:foodName URL로 접속했을 때에는 우리가 만들어둔 페이지들을 확인할 수 있지만, http://localhost:3000컴포넌트로 접속하게 되면 확인을 할 수가 없습니다. 이를 방지하기 위해서 잘못된 URL로 들어갔을 때의 Redirect를 설정해 주도록 하겠습니다.
+
+이를 위해서는 새로운 react-router-dom의 속성인 Redirect를 알아야 합니다. 컴포넌트 처럼 사용할 수 있고, to 라는 props를 받는데, 여기에 문자열로 기본 페이지로 돌아갈 URL을 적어 두면 됩니다. 그리고, Redirect를 활용하기 위해서는 Switch안에다가 사용하면 좋습니다. Switch를 통하게 되면 매치되는 라우트가 있을 때에는 Redirect가 작동하지 않을 테니까요. App.js를 다음과 같이 수정해 주세요.
+
+![Switch, Redirect&#xB97C; &#xC774;&#xC6A9;&#xD55C; &#xAE30;&#xBCF8; &#xD398;&#xC774;&#xC9C0; &#xC124;&#xC815;](.gitbook/assets/2019-02-10-12.43.02.png)
+
+_\(Switch를 사용했기 때문에, /foods라우트에 걸어둔 exact는 없애 주었습니다.\)_ 이제 의도하지 않게 이상한 라우트에 접속하게 되어도, 모두 /foods 기본 라우트로 Redirect 되게 됩니다. 
 
 ### 클릭 라우트 지정해주기
 
-//
+우리가 한 가지 만들어 두지 않은 부분이 있습니다. FoodCardList 컴포넌트에서 음식 개수대로 카드가 나오는데, 각각의 카드를 클릭해 봐도 상세보기 페이지로는 이동하지 않습니다. 그 부분을 처리해 보도록 하겠습니다. react-router-dom의 제공 props인 history의 push 라는 메소드를 사용할 것 입니다. food-card.js를 다음과 같이 변경해 주세요.
+
+![](.gitbook/assets/2019-02-10-12.42.06.png)
+
+### 옵션: 뒤로가기, 앞으로 가기
 
