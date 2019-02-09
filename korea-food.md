@@ -317,3 +317,75 @@ _\(Switch를 사용했기 때문에, /foods라우트에 걸어둔 exact는 없�
 
 ### 옵션: 뒤로가기, 앞으로 가기
 
+각각의 페이지 마다 있으면 좋은 메뉴 인 것 같습니다. 실습할 때 이미 구현을 해 보았었구요. 만들어 보도록 하겠습니다. App.js부분에 만들어 줄 것 입니다. scss도 조금 변경해 주겠습니다.
+
+![goBack, go, push&#xB97C; &#xC774;&#xC6A9;&#xD55C; 3&#xAC00;&#xC9C0; &#xBC84;&#xD2BC; &#xB9CC;&#xB4E4;&#xAE30;](.gitbook/assets/2019-02-10-12.50.12%20%281%29.png)
+
+[3강에서 진행했던 내용입니다.](history-go-and-goback.md) 
+
+scss파일입니다. 
+
+{% code-tabs %}
+{% code-tabs-item title="App.scss" %}
+```css
+#app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #app {
+    max-width: 720px;
+
+    #app-header {
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+      > span {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+
+    #app-food-card-container {
+      .food-card:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+      .food-card {
+        margin-bottom: 1rem;
+      }
+    }
+
+    #app-history-button {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+
+      > button:nth-child(1) {
+        margin-right: 0.5rem;
+      }
+      > button:nth-last-child(1) {
+        margin-left: 0.5rem;
+      }
+      > button {
+        border: 1px solid #dfe7f2;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        color: #4287c9;
+        background-color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+}
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+여기까지 전부 완료가 되면, 다음과 같이 잘 동작하는 전통음식 소개 페이지를 확인할 수 있습니다.
+
+![&#xC644;&#xC131;](.gitbook/assets/2019-02-10-1.05.51.png)
+
