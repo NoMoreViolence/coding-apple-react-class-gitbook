@@ -10,8 +10,17 @@ description: Routing 실습 토이 프로젝트
 
 ![](.gitbook/assets/2019-02-04-2.35.52.png)
 
-편의를 위해서 scss도 사용해 보도록 하겠습니다. `node-sass` 를 설치해 주세요.   
- `npm install node-sass or yarn add node-sass`또한, 라우터를 사용할 예정이니 react-router-dom을 설치 해야 합니다.`npm install react-router-dom or yarn add react-router-dom`  전부 설치가 다 되었다면 시작해 보도록 하겠습니다.
+scss, styled-components, 그리고 우리가 배운 react-router-dom도 설치해 주도록 하겠습니다.\`\`\`
+
+{% code-tabs %}
+{% code-tabs-item title="Third-party modules" %}
+```text
+yarn add node-sass or npm i node-sass
+yarn add styled-components or npm i styled-components
+yarn add react-router-dom or npm i react-router-dom
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 [라우팅을 준비할 때](route-prepare.md) BrowserRouter 라는 컴포넌트를 한 번 감싸 주었습니다. 이 프로젝트에도 똑같이 적용해 주시면 될 것 같습니다.
 
@@ -87,15 +96,200 @@ export default foodData;
 
 ![App.js state &#xC138;&#xD305;](.gitbook/assets/2019-02-04-3.31.55.png)
 
-### 전통음식 리스트 컴포넌트 만들기 + 전통음식 컴포넌트 만들기
+### 페이지 구성
 
-리스트 + 리스트 카드 컴포넌트 입니다.
+* /foods - 전체 음식이 들어가 있는 부분입니다
+* /foods/:foodName - 음식 이름에 따라서 각 음식에 대한 정보를 알려 줍니다.
 
-### 상세보기 컴포넌트 만들기
+### 전통음식 미리보기 컴포넌트 만들기
 
-라우터를 통해 특정 음식의 정보를 알고 싶을 때 사용하는 컴포넌트 입니다.
+우리가 만들 라우트는 /foods에 대한 라우트 입니다.
+
+미리보기 컴포넌트를 통해 카드 형태로 전통음식 리스트를 보여 줍니다. 각각의 리스트를 클릭하게 되면, 상세보기로 이동합니다. 카드 형태로 전통음식의 특징을 미리보기 할 수 있는 컴포넌트를 제작해 보도록 하겠습니다.
+
+src폴더 내에 food-card.js 파일을 생성해 주세요.
+
+![food-card.js](.gitbook/assets/2019-02-08-12.07.02.png)
+
+이 카드는 대략적인 음식의 정보를 받아 음식의 이름, 간략한 소개만 보여줄 수 있는 카드 형태의 컴포넌트가 될 예정입니다. food-card.js 컴포넌트를 제작해 보도록 하겠습니다.
+
+![&#xC804;&#xD1B5;&#xC74C;&#xC2DD; &#xCE74;&#xB4DC; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-02-09-4.08.34.png)
+
+이 컴포넌트는 음식의 자세한 정보를 알기 전, 간략한 정보만을 축약해서 보여줄 수 있는 페이지입니다. 따라서 음식의 이름과, subIntro라는 간단한 소개 글만 있는 컴포넌트 입니다. scss파일도 하나 만들어서 넣어 주세요.
+
+{% code-tabs %}
+{% code-tabs-item title="food-card.scss" %}
+```css
+.food-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dfe7f2;
+  border-radius: 0.5rem;
+
+  .food-card-name {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    > span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  .food-card-content {
+    margin-bottom: 0.75rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+이제 완성한 컴포넌트를 보여주는 일이 남았습니다. 그러기 위해서는 음식 데이터의 리스트를 조합해서 하나의 카드로 보여줄 수 있는 리스트 컴포넌트가 필요합니다. 
+
+### 전통음식 미리보기 컴포넌트 리스트 만들기
+
+src 폴더에 food-card-list.js 파일을 생성해 주세요.
+
+![food-card-list.js](.gitbook/assets/2019-02-09-4.11.30.png)
+
+리스트 컴포넌트를 작성해 보겠습니다.
+
+![&#xC74C;&#xC2DD; &#xB9AC;&#xC2A4;&#xD2B8; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8; &#xC785;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-09-4.13.44.png)
+
+리스트 컴포넌트와 카드 컴포넌트를 완성했으니, 남은 것은 App.js에 적용해주는 일이 남았습니다.
+
+![Route](.gitbook/assets/2019-02-09-4.31.26.png)
+
+여기에 지금까지 배웠던 예제와 다른 속성이 Route에 있는 것을 볼 수 있습니다. 바로 render 인데요, 이것을 사용한 이유는, 넘겨주는 컴포넌트인 FoodCardList 컴포넌트가 음식 리스트를 Props로 받기 때문입니다. 
+
+#### Render를 사용하면, props를 담아서 라우팅을 할 수 있습니다.
+
+component={컴포넌트 이름} 형태로 출력하게 되면, FoodCardList 컴포넌트가 받아야 할 음식 리스트를 받지 못하게 됩니다. render 컴포넌트는, 라우팅되는 컴포넌트에 Props를 전해주고 싶을 때 사용하는 컴포넌트 입니다. Arrow function을 사용하는 형태로 작성합니다.
+
+추가로, App.scss도 조금 변경 되었습니다.
+
+{% code-tabs %}
+{% code-tabs-item title="App.scss" %}
+```css
+#app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  #app {
+    max-width: 720px;
+
+    #app-header {
+      margin-top: 0.5rem;
+      margin-bottom: 2rem;
+      > span {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+
+    #app-food-card-container {
+      .food-card:nth-last-child(1) {
+        margin-bottom: 0;
+      }
+      .food-card {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+[http://localhost:3000/foods](http://localhost:3000/foods) 로 들어가보면, 우리가 작성한 컴포넌트가 매우 잘 동작하는 것을 확인 할 수 있습니다.
+
+![Foods](.gitbook/assets/localhost_3000_foods-iphone-6_7_8.png)
+
+### 전통음식 상세보기 컴포넌트 만들기
+
+라우터를 통해 특정 음식의 정보를 알고 싶을 때 사용하는 컴포넌트 입니다. 라우트 주소는 미리 정해두었던 데로, foods/:foodName 라우트로 들어왔을 때 각 음식 이름 별로 처리를 해 주는 것으로 하겠습니다. 지금 경우에는 3개의 전통음식 상세보기 페이지가 만들어 질 예정입니다. 소개할 음식이 3가지니까, 라우트도 /foods/김치, /foods/된장찌개, /foods/비빔밥, 이렇게 3가지의 라우트에 따라서 각각의 상세 보기 페이지가 만들어 질 예정입니다. 그러나 컴포넌트는 하나만 있으면 충분합니다.
+
+우선, food-specific 컴포넌트를 하나 만들어 주도록 하겠습니다.
+
+![food-specific.js](.gitbook/assets/2019-02-09-4.41.31.png)
+
+이번 컴포넌트는 제법 깁니다. 그러나 특별한 부분은 render내부에 있는 함수 한 개밖에 없습니다.
+
+![1 ~ 47&#xC904; &#xAE4C;&#xC9C0;](.gitbook/assets/2019-02-09-5.54.04.png)
+
+![28 ~ &#xB05D;&#xAE4C;&#xC9C0;](.gitbook/assets/2019-02-09-5.54.10.png)
+
+render 함수 내부에 있는 renderText 함수는, 말 그대로 문자열 텍스트를 받아서, 엔터 를 기준으로 배열을 생성한 후, map 함수를 이용해서 문장 하나하나 p태그에 담아서 출력하는 부분입니다. 이 부분이 필요한 이유는, HTML에서 단순 문자열을 출력할 경우에 엔터 개행이 불가능 하기 때문입니다. 이미지를 보여주는 부분 같은 부분은 일전에 만들었던 미리보기 컴포넌트에서 대부분 가져와서 사용했습니다.
+
+scss파일입니다.
+
+{% code-tabs %}
+{% code-tabs-item title="food-specific.scss" %}
+```css
+.food-specific-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  border: 1px solid #dfe7f2;
+  border-radius: 0.5rem;
+
+  .food-specific-header {
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+
+    > div:nth-child(1) {
+      margin-bottom: 0.5rem;
+      > span {
+        font-size: 2rem;
+        font-weight: bold;
+      }
+    }
+    > div:nth-last-child(1) {
+      display: flex;
+      flex-direction: column;
+      > span:nth-child(1) {
+        margin-bottom: 0.75rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .food-specific-content {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+
+    > div:nth-child(1) {
+      > span:nth-child(1) {
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 
 
+### Redirect 설정하기
 
+//
+
+### 클릭 라우트 지정해주기
+
+//
 

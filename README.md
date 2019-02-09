@@ -51,7 +51,7 @@ ES6에 대한 학습
 * [CSR은 SSR과 뭐가 다른거지 ?](route-prepare.md#undefined)
 * [react-router-dom을 이용한 간단한 라우팅 학습](route-prepare.md#browerrouter-csr)
 * [NavLink를 통한 특정 라우트 페이지 스타일 주입](route-actual.md#a-link)
-* [history를 이용한 이전 페이지로 이동 실습해보기](history-go-and-goback.md) 
+* [history를 이용한 이전 페이지로 이동 실습해보기](history-go-and-goback.md)
 * 라우팅을 통한 한국 전통 음식 소개 페이지 만들기
 * 1. 전체적인 음식 리스트
   2. 세부 음식 정보 
