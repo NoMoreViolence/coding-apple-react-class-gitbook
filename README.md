@@ -58,7 +58,7 @@ ES6에 대한 학습
 * [ ] API \(Ajax\) 사용을 통한 데이터 요청 및 핸들링과 State 효율적으로 관리하기
 * Ajax & API \(axios\)
 * API 요청 간단 실습해보기
-* Unsplash API를 이용한 무한 스크롤링 사진첩 만들기
+* Unsplash API를 이용한 사진첩 만들기
 * API 요청으로 추가 데이터 로드하기
 * API 실패 시 에러 핸들링하기
 * 데이터 상태 관리
