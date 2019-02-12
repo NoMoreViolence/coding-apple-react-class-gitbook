@@ -52,9 +52,9 @@ ES6에 대한 학습
 * [react-router-dom을 이용한 간단한 라우팅 학습](route-prepare.md#browerrouter-csr)
 * [NavLink를 통한 특정 라우트 페이지 스타일 주입](route-actual.md#a-link)
 * [history를 이용한 이전 페이지로 이동 실습해보기](history-go-and-goback.md)
-* 라우팅을 통한 한국 전통 음식 소개 페이지 만들기
-* 1. 전체적인 음식 리스트
-  2. 세부 음식 정보 
+* [라우팅을 통한 한국 전통 음식 소개 페이지 만들기](korea-food.md)
+* 1. [전체적인 음식 리스트](korea-food.md#undefined-3)
+  2. [세부 음식 정보](korea-food.md#undefined-5) 
 * [ ] API \(Ajax\) 사용을 통한 데이터 요청 및 핸들링과 State 효율적으로 관리하기
 * Ajax & API \(axios\)
 * API 요청 간단 실습해보기

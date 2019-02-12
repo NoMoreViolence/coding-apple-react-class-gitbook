@@ -319,7 +319,7 @@ _\(Switch를 사용했기 때문에, /foods라우트에 걸어둔 exact는 없�
 
 각각의 페이지 마다 있으면 좋은 메뉴 인 것 같습니다. 실습할 때 이미 구현을 해 보았었구요. 만들어 보도록 하겠습니다. App.js부분에 만들어 줄 것 입니다. scss도 조금 변경해 주겠습니다.
 
-![goBack, go, push&#xB97C; &#xC774;&#xC6A9;&#xD55C; 3&#xAC00;&#xC9C0; &#xBC84;&#xD2BC; &#xB9CC;&#xB4E4;&#xAE30;](.gitbook/assets/2019-02-10-12.50.12%20%281%29.png)
+![goBack, goToMain, go &#xBA54;&#xC18C;&#xB4DC;](.gitbook/assets/2019-02-10-9.40.13.png)
 
 [3강에서 진행했던 내용입니다.](history-go-and-goback.md) 
 
