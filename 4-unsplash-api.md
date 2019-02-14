@@ -139,7 +139,7 @@ const Content = styled.div`
 
 일단 첫 번째로 해야할 일은, PictureList 컴포넌트를 App.js에 넣어주는 겁니다. props로는 images를 넣어주면 됩니다. 그 다음으로 해야할 일은 기본 API 요청 입니다. 현재 사이트에 접속했을 때에는 빈 배열이기 때문에 접속했을 때 빈 화면이 보입니다. 사진이 보이게 하기 위해서는 API요청이 가야 합니다. 적당한 LifeCycle은 componentDidMount가 있겠네요. 
 
-![        componentDidMount&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C; API&#xB97C; &#xCCAB; &#xD398;&#xC774;&#xC9C0; &#xB85C;&#xB529; &#xC2DC;&#xC5D0; &#xC694;&#xCCAD; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-13-4.05.12.png)
+![componentDidMount&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C; API&#xB97C; &#xCCAB; &#xD398;&#xC774;&#xC9C0; &#xB85C;&#xB529; &#xC2DC;&#xC5D0; &#xC694;&#xCCAD; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-14-10.08.37.png)
 
 {% code-tabs %}
 {% code-tabs-item title="App.scss" %}
@@ -155,7 +155,278 @@ const Content = styled.div`
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-전부 완료된 뒤에 브라우저 화면을 보면 의도한 대로 잘 출력됩니다.
+전부 완료한 뒤에 브라우저 화면을 보면 의도한 대로 잘 출력됩니다.
 
 ![&#xC6D0;&#xD588;&#xB358; &#xC751;&#xB2F5; &#xAC12;&#xC774; &#xC624;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB354;&#xC774;&#xC0C1; &#xBE48; &#xD654;&#xBA74;&#xC774; &#xC544;&#xB2D9;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-13-4.02.33.png)
+
+### 더 보기 버튼을 이용해서 더 많은 사진을 불러오기
+
+현재 웹 사이트 로딩 시 새로운 사진 데이터를 불러오는 API를 활용해서 우리가 볼 수 있도록 하고 있습니다. 그러나 더 많은 사진을 보거나 새로운 사진을 보기 위해서는 새로고침이 필요합니다. 더 많은 사진을 불러오는 기능을 추가 해 보도록 하겠습니다.
+
+단순한 버튼 한개가 들어있는 컴포넌트를 제작해 보도록 하겠습니다. src/components폴더에 load-more.js파일을 생성해 주세요.
+
+![load-more.js](.gitbook/assets/2019-02-14-9.12.30.png)
+
+styled 컴포넌트 값 입니다.
+
+{% code-tabs %}
+{% code-tabs-item title="StyledComponent Values" %}
+```javascript
+const WrapButton = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+const Button = styled.button`
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #333333;
+  border-radius: 0.5rem;
+  color: black;
+  cursor: pointer;
+`;
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+이 컴포넌트가 하는 역할은, 단지 버튼을 눌렀을 때에, 부모로부터 받은 loadMore이라는 props를 실행시켜 주는 일 입니다. 이제 부모 Props를 주는 App.js에 LoadMore 컴포넌트를 불러와 주어야 합니다. App.js를 다음과 같이 수정해 주세요.
+
+![render &#xBD80;&#xBD84;&#xB9CC; &#xC218;&#xC815;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-14-9.55.32.png)
+
+이후 브라우저에서 화면을 보면 다음과 같은 모습을 볼 수 있습니다.
+
+![&#xBC84;&#xD2BC;&#xC744; &#xB204;&#xB974;&#xAC8C; &#xB418;&#xBA74; &#xC0AC;&#xC9C4;&#xC744; &#xBD88;&#xB7EC;&#xC624;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-14-9.21.11.png)
+
+### 사용성 증대를 위한 로딩 효과 구현
+
+지금까지 기능은 잘 동작하고 있네요. 그러나 한가지 문제점은, API를 호출하는 과정에서 응답을 받아 setState가 일어나기 전 까지는 API가 로딩 중인지, 혹시나 버그로 인해서 로딩이 실패했는지를 알 수가 없습니다. 사용자에 어림짐작으로 너무 로딩 시간이 길어지면 오류가 생기지 않았나 생각하게 만들죠. 이것은 사용자로 하여금 불편함을 유발하기 때문에 좋은 웹 페이지라고 할 수가 없습니다. 이것을 개선해 보도록 하겠습니다.
+
+src/components 폴더에 loader.js, loader.scss 파일을 생성해 주세요.
+
+![&#xB85C;&#xB529; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8; &#xC785;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-14-9.40.28.png)
+
+이 컴포넌트는 단순히 svg파일만을 담고 있습니다. css도 로딩되는 것처럼 도와주기 위한 것 밖에는 들어있지 않습니다.
+
+{% code-tabs %}
+{% code-tabs-item title="loader.js" %}
+```javascript
+import React, { Component } from 'react';
+import './loader.scss';
+
+// Thank you for https://codepen.io/akwright/ Alex
+class Loader extends Component {
+  render() {
+    return (
+      <div className="modal transparent-black-background">
+        <div className="modal-card loading-container">
+          <svg version="1.1" id="preloader6" width="140px" height="140px" viewBox="0 0 200 200">
+            <g className="pre load6">
+              <path
+                fill="#1B1A1C"
+                d="M124.5,57L124.5,57c0,3.9-3.1,7-7,7h-36c-3.9,0-7-3.1-7-7v0c0-3.9,3.1-7,7-7h36
+	C121.4,50,124.5,53.1,124.5,57z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M147.7,86.9L147.7,86.9c-2.7,2.7-7.2,2.7-9.9,0l-25.5-25.5c-2.7-2.7-2.7-7.2,0-9.9l0,0
+	c2.7-2.7,7.2-2.7,9.9,0L147.7,77C150.5,79.8,150.5,84.2,147.7,86.9z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M143,74.5L143,74.5c3.9,0,7,3.1,7,7v36c0,3.9-3.1,7-7,7l0,0c-3.9,0-7-3.1-7-7v-36
+	C136,77.6,139.1,74.5,143,74.5z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M148.4,112.4L148.4,112.4c2.7,2.7,2.7,7.2,0,9.9L123,147.7c-2.7,2.7-7.2,2.7-9.9,0h0c-2.7-2.7-2.7-7.2,0-9.9
+	l25.5-25.5C141.3,109.6,145.7,109.6,148.4,112.4z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M125.5,143L125.5,143c0,3.9-3.1,7-7,7h-36c-3.9,0-7-3.1-7-7l0,0c0-3.9,3.1-7,7-7h36 C122.4,136,125.5,139.1,125.5,143z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M52.3,113.1L52.3,113.1c2.7-2.7,7.2-2.7,9.9,0l25.5,25.5c2.7,2.7,2.7,7.2,0,9.9h0c-2.7,2.7-7.2,2.7-9.9,0
+	L52.3,123C49.5,120.2,49.5,115.8,52.3,113.1z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M57,75.5L57,75.5c3.9,0,7,3.1,7,7v36c0,3.9-3.1,7-7,7h0c-3.9,0-7-3.1-7-7v-36C50,78.6,53.1,75.5,57,75.5z"
+              />
+              <path
+                fill="#1B1A1C"
+                d="M86.9,52.3L86.9,52.3c2.7,2.7,2.7,7.2,0,9.9L61.5,87.6c-2.7,2.7-7.2,2.7-9.9,0l0,0c-2.7-2.7-2.7-7.2,0-9.9
+	L77,52.3C79.8,49.5,84.2,49.5,86.9,52.3z"
+              />
+            </g>
+          </svg>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Loader;
+
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+{% code-tabs %}
+{% code-tabs-item title="loader.scss" %}
+```css
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: hsla(0, 0%, 0%, 0.502);
+
+  .modal-card {
+    position: static;
+
+    @media screen and (max-width: 768px) {
+      width: 300px; /* Could be more or less, depending on screen size */
+    }
+    @media screen and (min-width: 769px) and (max-width: 1119px) {
+      width: 360px;
+    }
+    @media screen and (min-width: 1120px) {
+      width: 420px; /* Could be more or less, depending on screen size */
+    }
+
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    > div {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    > div:nth-child(1) {
+      margin-top: 0.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    > div:nth-last-child(1) {
+      margin-top: 2rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+}
+
+@for $i from 1 through 8 {
+  .load6 path:nth-of-type(#{$i}) {
+    -webkit-animation: spin_single 1s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    animation: spin_single 1s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  }
+}
+.pre path {
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+@-webkit-keyframes spin_half {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin_half {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin_full {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin_full {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin_single_neg {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(-180deg);
+  }
+}
+@keyframes spin_single_neg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
+}
+@-webkit-keyframes spin_single {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+  }
+}
+@keyframes spin_single {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
+
+이제 이 파일들을 API 로딩이 시작했을 때와 끝나기 전 까지 보여주어야 합니다. 그 부분을 제작해 보도록 하겠습니다. App.js파일을 다음과 같이 수정해 주세요. state를 하나 추가하고, getImages 부분을 수정할 것 입니다.
+
+![state&#xB97C; &#xCD94;&#xAC00;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. ](.gitbook/assets/2019-02-14-9.51.50.png)
+
+메소드 시작과 동시에 isPending이라는 state가 true로 변경되고, API호출이 끝남과 동시에 다시 isPending이라는 변수가 false로 변경됩니다. 이제 이 변수에 맞추어서 Loader 컴포넌트를 보여주면 됩니다. render부분에 Loader 컴포넌트를 불러와 주세요. 단 isPending이 true일때만 불러와야 합니다. App.js의 render부분을 사진과 같이 수정해 주세요.
+
+![Loader &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xB97C; &#xBD88;&#xB7EC;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-02-14-9.53.59.png)
+
+isPending이라는 state가 true인 조건을 걸어, 그 조건이 활성화 되었을때만 _\(&&, and연산과 같음\)_ Loader컴포넌트가 보여지도록 했습니다.
 
