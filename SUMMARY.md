@@ -22,4 +22,5 @@
 * [4강 - Ajax In React](ajax-in-react.md)
 * [4강 - Form in react](4-form-in-react.md)
 * [4강 - Unsplash API를 이용한 사진첩 만들기](4-unsplash-api.md)
+* [4강 - Redux - 데이터를 관리하는 또 다른 방법](4-redux.md)
 
