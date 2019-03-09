@@ -16,7 +16,7 @@ console.log(this); // {}
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-이 결과는 당연합니다. 지금의 this가 가리키는 곳은 어떤 클래스도 아니고, 단지 브라우저에는 window객체를 가리키는 것이고 nodejs환경에서는 window객체가 존재하지 않으니 빈 객체를 출력하게 되는 것 입니다. this키워드가 유용하게 사용되는 곳은 클래스와 객체내에서 인데요, 두 번째 예제를 보면 this가 왜 필요한지 알게 되실 겁니다.
+이 결과는 당연합니다. 지금의 this가 가리키는 곳은 어떤 클래스도 아니고, 단지 브라우저에는 window객체를 가리키는 것이고 nodejs환경에서는 window객체가 존재하지 않으니 빈 객체를 출력하게 되는 것 입니다. this키워드가 유용하게 사용되는 곳은 클래스와 객체내에서 사용될 때에 있습니다. 앞으로의 예제를 보면 this가 왜 필요한지 알게 되실 겁니다.
 
 {% code-tabs %}
 {% code-tabs-item title="thisExample2.js" %}
