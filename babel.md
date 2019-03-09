@@ -1,8 +1,8 @@
 ---
-description: NodeJS의 문법 확장
+description: Javascript의 문법 확장
 ---
 
-# 개념 정립 - Babel?
+# 개념 정립 - Babel
 
 일반 자바스크립트 문법과 create-react-app에서 작동하는 문법은 조금 많이 다릅니다. 일단 모듈을 import하는 방식부터 다른데요. 한번 비교해 볼까요 ?
 

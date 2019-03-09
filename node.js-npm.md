@@ -2,7 +2,7 @@
 description: nodejs와 npm에 대해서 알아보겠습니다.
 ---
 
-# 개념 정립 - Node.js ? npm ?
+# 개념 정립 - Node.js & npm
 
 ### Node.js가 뭐야 ?
 

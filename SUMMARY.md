@@ -1,12 +1,12 @@
 # Table of contents
 
 * [리액트 강의](README.md)
+* [\* 강의 수강 전 준비 \(중요\)](before-start-class.md)
+* [개념 정립 - Node.js & npm](node.js-npm.md)
+* [개념 정립 - Babel](babel.md)
+* [개념 정립 - Bundler](bundler.md)
 * [개념 정립 - Class](class.md)
 * [개념 정립 - this](this.md)
-* [개념 정립 - Node.js ? npm ?](node.js-npm.md)
-* [개념 정립 - Babel?](babel.md)
-* [개념 정립 - Bundler](bundler.md)
-* [1강 - 사전 준비물](before-start-class.md)
 * [1강 - React가 뭐야?](what-is-react.md)
 * [1강 - 리액트를 왜 배우니 ?](why-learn-react.md)
 * [1강 - CRA를 활용한 리액트 앱 만들기](create-reactapp-using-cra-5min.md)
