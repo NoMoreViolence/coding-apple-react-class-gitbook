@@ -32,7 +32,7 @@ ES6에 대한 학습
 
 
 
-* [x] React 기초와 맛보기 
+* [ ] React 기초와 맛보기 
 * [리액트를 시작하기 전에](before-start-class.md)
 * [리액트가 뭐야 ?](what-is-react.md)
 * [리액트를 왜 배우니 ?](why-learn-react.md)
@@ -43,7 +43,7 @@ ES6에 대한 학습
 * [Props와 State에 대해 알아보기](props-and-state.md)
 * [컴포넌트 생성 주기에 따른 LifeCycle API 알아보기](lifecycle-of-react-component.md)
 * 전화번호부 만들기 \(생성, 수정, 삭제, 검색\) \(시간이 된다면\) 
-* [x] React 꾸미기
+* [ ] React 꾸미기
 * [CRA에 sass, scss 주입 방법](scss-note.md#undefined-1)
 * [Styled-component](scss-note.md#undefined-4)
 * [리액트 메모장 만들기 \(생성, 수정, 삭제, 검색\)](scss-note.md#undefined) 
