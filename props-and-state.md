@@ -14,9 +14,25 @@ Props와 State는 리액트에서 다루는 데이터의 개념입니다. 쉽게
 
 ![State&#xB97C; &#xC815;&#xC758;&#xD558;&#xACE0;, &#xAC12;&#xC744; &#xCD9C;&#xB825;&#xAE4C;&#xC9C0; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-03-10-2.56.44.png)
 
-state는 반드시 객체 형태로 생성 되거나 아니면 null \(state를 정의하지 않음\) 타입이여야만 합니다.
+state는 반드시 객체 형태로 생성 되거나 아니면 null \(state를 정의하지 않음\) 타입이여야만 합니다. _\(그런데 한가지 의문이 들 수 있는 점은, 왜 데이터를 보여주기 위해 state를 사용하냐는 것인데, 그 이유는 밑에서 설명해 드리겠습니다.\)_ 지금의 예제는 state를 생성해서 출력까지 하는 예제였습니다. 한번 이번에는 state를 변경하는 예제를 만들어 보도록 하겠습니다.
 
-![&#xB9AC;&#xC561;&#xD2B8;&#xC758; setState](.gitbook/assets/2019-01-18-3.00.16.png)
+![state&#xC5C5;&#xB370;&#xC774;&#xD2B8;](.gitbook/assets/2019-03-10-3.04.16.png)
+
+이제 여기서 리액트 컴포넌트의 업데이트 규칙이 나옵니다. 
+
+**state 업데이트를 하려면 무조건 setState라는 메소드를 사용해야만 합니다.** _\(리액트 컴포넌트에서 제공해주는 메소드\)_ 
+
+만약 setState메소드를 사용하지 않고 그냥 state property에 접근해서 값을 변경하는 경우 그 값이 실제 HTML상으로는 업데이트 되지 않게 됩니다. 앞서 리액트에서는 효율적으로 HTML이 업데이트 되어야 할 부분만을 감지해서 업데이트 한다고 했었습니다. 그렇기 위해서 리액트 개발팀에서 **특정한 작업이 이루어 졌을 때에만 HTML이 업데이트 되도록 만든 규칙 중 하나가 바로 setState실행** 입니다. 다른 방법으로 state를 변경하게 되면 변경된 값을 HTML에서는 볼 수가 없게 됩니다. setState메소드의 사용방법에는 여러 가지가 있지만, 일반적으로 setState\( { 업데이트할 state property: 값 } \) 과 같은 객체 형태로 업데이트 합니다.
+
+{% code-tabs %}
+{% code-tabs-item title="setState.js" %}
+```javascript
+this.setState({
+    helloMessage: 'Change'
+})
+```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 천천히 설명해 드리겠습니다. 우선 JSX 부분의 button에 있는 onClick 메소드가 보이시나요? 이건 html의 onclick 메소드와 역할이 같습니다. 이상한 점은, onClick 을 할 때 this.handleClick 메소드가 실행되지 않는 형태입니다. 눌러도 메소드를 실행시키지 않습니다. 우리가 그동안 알고 있던 onclick에서는 함수를 실행시켜 주었는데 말이죠. 그러나 리액트는 HTML이 아닌 JSX 입니다. JSX가 컴파일 되면서 메소드 실행 부분을 실행시켜 버리기 때문에 JSX에서는 onClick onChange와 같은 메소드에 메소드를 실행시키지 않습니다. 저렇게 메소드를 만들어 놓게 되면, 자동으로 담기는 인자는 자신의 element가 됩니다. 아무튼, 저 상태에서 버튼을 클릭하면 Inside 이지훈 =&gt; Changed 이지훈 으로 값이 변경되었을 것 입니다. 저런 방식으로 State를 업데이트 해야만 재 렌더링을 할 수 있습니다. State를 업데이트 하는 방법은 한 가지 더 있습니다.
 
