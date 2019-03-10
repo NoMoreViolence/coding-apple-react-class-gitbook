@@ -1,18 +1,18 @@
 ---
-description: 리액트의 데이터 관리
+description: Data handling in reactjs
 ---
 
-# 1강 - Props와 State
+# 1강 - props & state
 
-### Props & State의 개념만 이해하면 리액트의 반이 끝납니다
+### props & state의 개념만 이해하면 리액트가 쉬워집니다.
 
-Props와 State는 리액트에서 다루는 데이터의 개념입니다. 쉽게 말하자면, Props는 받은 데이터 이거나 생성된 데이터, 즉 데이터의 기원이 자기 자신이 아닌 것이고, State는 자신의 컴포넌트에서 만들어진 데이터 입니다. 어떤 컴포넌트 기준에서 얘기하는지에 따라서 같은 데이터 이더라도 State가 될 수 있고 Props가 될 수 있습니다.우선 우리는 State에 관해서 먼저 알아본 후, Props에 대해 알아보겠습니다.
+props와 state는 리액트에서 다루는 데이터의 개념입니다. 쉽게 말하자면, props는 받은 데이터 이거나 생성된 데이터, 즉 데이터의 기원이 자기 자신이 아닌 것이고, state는 자신의 컴포넌트에서 만들어진 데이터 입니다. 어떤 컴포넌트 기준에서 얘기하는지에 따라서 같은 데이터 이더라도 state가 될 수 있고 props가 될 수 있습니다.우선 우리는 state에 관해서 먼저 알아본 후, props에 대해 알아보겠습니다.
 
-### State, 현재 컴포넌트의 데이터
+### state, 현재 컴포넌트의 데이터
 
 **state는 현재 컴포넌트에서 변경, 삭제, 생성할 수 있는 데이터 입니다**. state는 오직 state가 생성된 컴포넌트 내에서만 변경이 가능합니다. _\(이 개념은 나중에 props를 배우게 되면 구체화 되게 됩니다.\)_ state를 선언하는 방법은 간단합니다.
 
-![State&#xB97C; &#xC815;&#xC758;&#xD558;&#xACE0;, &#xAC12;&#xC744; &#xCD9C;&#xB825;&#xAE4C;&#xC9C0; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-03-10-2.56.44.png)
+![state&#xB97C; &#xC815;&#xC758;&#xD558;&#xACE0;, &#xAC12;&#xC744; &#xCD9C;&#xB825;&#xAE4C;&#xC9C0; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-03-10-2.56.44.png)
 
 state는 반드시 객체 형태로 생성 되거나 아니면 null \(state를 정의하지 않음\) 타입이여야만 합니다. _\(그런데 한가지 의문이 들 수 있는 점은, 왜 데이터를 보여주기 위해 state를 사용하냐는 것인데, 그 이유는 밑에서 설명해 드리겠습니다.\)_ 지금의 예제는 state를 생성해서 출력까지 하는 예제였습니다. 한번 이번에는 state를 변경하는 예제를 만들어 보도록 하겠습니다.
 
@@ -34,126 +34,33 @@ this.setState({
 {% endcode-tabs-item %}
 {% endcode-tabs %}
 
-천천히 설명해 드리겠습니다. 우선 JSX 부분의 button에 있는 onClick 메소드가 보이시나요? 이건 html의 onclick 메소드와 역할이 같습니다. 이상한 점은, onClick 을 할 때 this.handleClick 메소드가 실행되지 않는 형태입니다. 눌러도 메소드를 실행시키지 않습니다. 우리가 그동안 알고 있던 onclick에서는 함수를 실행시켜 주었는데 말이죠. 그러나 리액트는 HTML이 아닌 JSX 입니다. JSX가 컴파일 되면서 메소드 실행 부분을 실행시켜 버리기 때문에 JSX에서는 onClick onChange와 같은 메소드에 메소드를 실행시키지 않습니다. 저렇게 메소드를 만들어 놓게 되면, 자동으로 담기는 인자는 자신의 element가 됩니다. 아무튼, 저 상태에서 버튼을 클릭하면 Inside 이지훈 =&gt; Changed 이지훈 으로 값이 변경되었을 것 입니다. 저런 방식으로 State를 업데이트 해야만 재 렌더링을 할 수 있습니다. State를 업데이트 하는 방법은 한 가지 더 있습니다.
+### state, 카운터 예제로 살펴봅시다
 
-![setState&#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD568;&#xC218;&#xCC98;&#xB7FC;](.gitbook/assets/2019-01-18-3.06.12.png)
+state를 더 쉽게 이해할 수 있도록 예제 한 가지를 만들어 보도록 하겠습니다.
 
-함수처럼 사용할 수도 있습니다.
+![countUp, countDown](.gitbook/assets/2019-03-10-5.35.47.png)
 
-#### 그런데 여기서 의문이 들기 시작합니다. 데이터를 꼭 State만 사용해야 할까?
+_\(이벤트를 등록할 때 마다, bind\(this\)를 하는 이유가 궁금하시다면, 개념 정립에 있는_ [_this_](this.md) _글을 봐 주시길 부탁드리겠습니다.\)_ 
 
-State는 현재 컴포넌트 내에서 만들어 변경이 가능한 데이터 입니다. 물론 클래스 문법을 사용하는 컴포넌트에서는 State로 굳이 데이터를 정의하지 않아도 사용할 수 있긴 합니다.
+단순한 예제입니다. countUp메소드는 카운트를 1증가시키고, countDown메소드는 카운트를 1아래로 내려줍니다. 단지 우리가 알아야 할 것은, App컴포넌트에 생성한 state는, App컴포넌트에서만 업데이트 할 수 있다는 겁니다.
 
-![State &amp; not State](.gitbook/assets/2019-01-17-12.35.07.png)
+### props를 알아봅시다. 정말 간단합니다.
 
-둘 다 제대로 할당받은 값을 보여주긴 합니다. 하지만 문제는 이 다음에 발생하는데요, 만약 this.notStateMyName의 값을 변화 시킬 지라도, 컴포넌트의 값은 변하지 않을 것 입니다. 리액트는 안전한 컴포넌트 렌더링을 위해서 3가지 방식으로 컴포넌트를 재 랜더링 합니다.
+전 컴포넌트 글에서 우리는 컴포넌트를 여러 개 생성해서 App컴포넌트에 렌더링 시키는 예제를 살펴보았습니다. 이번에는 컴포넌트를 렌더링 시키는 것 뿐만 아니라 데이터를 전달하는 예제를 실습해 보도록 하겠습니다. App.js파일에 다른 클래스 컴포넌트를 하나 생성해 주세요.
 
-1. 부모 컴포넌트가 내려주는 Props의 값이 변화했을 때
-2. 현재 컴포넌트의 **state가 immutable 하게 업데이트** 되었을 때
-3. forceUpdate\(\) 라는 강제 렌더링 메소드를 실행할 때
+![&#xC0C8;&#xB85C;&#xC6B4; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-03-10-5.45.43.png)
 
-이 3가지 방식 이외에는 리액트 컴포넌트를 렌더링 시킬 방법이 없습니다. 이런 방식을 통해서 리액트는 컴포넌트의 재 랜더링 방식을 효율적으로 관리합니다. 보여지는 데이터는 모두 Props 와 State를 사용해야만 원하는 렌더링을 할 수 있습니다. 그렇기 때문에 class property로 선언한 this.notStateMyName의 값이 변경되어도 리액트는 재 렌더링 되지 않습니다. State와 Props 어디에도 속해있지 않으니까요.
+이제 이 새로 만든 클래스를 App부분에 넣어주도록 하겠습니다.
 
-자, 그럼 렌더링 되는 3가지 방식 중에 우리는 2가지 방식을 살펴볼 것 입니다. 마지막 3번 forceUpdate\(\) 메소드는 나중에 여러분이 필요하실 때 사용하게 될 것이므로, 이번 강의에서는 다루지 않겠습니다. \(class property로 선언한 변수를 업데이트 시키고 싶으시다면, forceUpdate를 사용하시면 됩니다.\)
+![&#xC0C8;&#xB85C; &#xB9CC;&#xB4E0; &#xD074;&#xB798;&#xC2A4;&#xB97C; &#xC8FC;&#xC785; &#xC2DC;&#xCF30;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-03-10-5.47.21.png)
 
-### State의 불변성
+정말 간단하게 데이터를 전달했습니다. 앞으로 자식 컴포넌트에게 데이터를 전달하고 싶을 때는, 저런 방식을 사용해서 전달하면 됩니다. 꼭 state만을 전달할 필요는 없고, 메소드를 전달하는 것도 가능합니다. 화면을 보면 자식 클래스에 전달한 값이 버튼을 클릭할 때마다 잘 업데이트 됩니다.
 
-setState\(\) 메소드는 state안에 있는 깊숙한 object property를 유지해 주면서 업데이트 해 주지 않습니다.
+![&#xC790;&#xC2DD; &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xAC8C; &#xC804;&#xB2EC;&#xD558;&#xAE30;](.gitbook/assets/2019-03-10-5.49.13.png)
 
-{% code-tabs %}
-{% code-tabs-item title="setState" %}
-```javascript
-state = {
-    helloObject: {
-        hi: 'hello',
-        hello: 'hi'
-    }
-}
+이제 props에 개념에 대해서 이해가 가시나요? props와 state를 구분하는 기준은, 어떤 컴포넌트에 입장에서 말하는 지에 따라서 달라집니다. 만약 count를 App컴포넌트에 입장에서 말하게 된다면 그것은 state이겠지만, PropsTestClass컴포넌트에서 count를 논하게 된다면 그것은 props로써 취급되게 됩니다.
 
-this.setState({
-    helloObject: {
-        hello: 'hello'
-    }
-})
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
+### 이 개념이 이해가 되셨다면...
 
-이 결과로 state는 어떻게 바뀌게 될까요??
-
-{% code-tabs %}
-{% code-tabs-item title="OMG" %}
-```javascript
-// 변화 예상도
-state = {
-    helloObject: {
-        hi: 'hello',
-        hello: 'hello'
-    }
-}
-
-// 실제 값의 변화
-state = {
-    helloObject: {
-        hello: 'hello'
-    }
-}
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-기존에 있었던  helloObject.hi 가 없어져 버렸습니다...!  setState는 깊숙한 object 까지는 관리를 해 주지 못하기 때문에, 우리는 직접 불변성을 지키면서 업데이트 해 주어야 합니다.
-
-{% code-tabs %}
-{% code-tabs-item title="..." %}
-```javascript
-state = {
-    helloObject: {
-        hi: 'hello',
-        hello: 'hi'
-    }
-}
-
-this.setState({
-    helloObject: {
-        ...this.state.helloObject,
-        hello: 'hello'
-    }
-})
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-...this.state.helloObject는 this.state.helloObject의 값들입니다. 그러면 hi: 'hello'와 hello: 'hi'가 오게 되는데요, 여기서 우리는 hello: 'hello'로 변경을 해 주었습니다. ...은 기존의 객체를 풀어 주지만 새로 할당되는 다른 객체가 있다면 덮어씌워집니다. 그렇기 때문에 기존의 hello: 'hi'와 우리가 재 선언하는 hello: 'hello'가 만나도 'hello'로 업데이트가 되게 됩니다.
-
-### Props로 전달해 봅시다.
-
-state나 메소드를 전달하게 되면, 그게 전달받은 컴포넌트에서 모두 props 입니다, props의 형태는 함수가 될 수도 있고, 값이 될 수도 있죠. 중요한 것은 Props는 사용이 가능할 뿐 변경은 할 수 없다는 겁니다. 강제로 변경 할 수는 있으나 리액트에서는 이것을 추천하지 않습니다.
-
-![ChildApp&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xC5D0;&#xAC8C; Props&#xB85C; &#xC804;&#xB2EC;&#xD574; &#xC8FC;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.](.gitbook/assets/2019-01-19-4.42.17.png)
-
-이제 ChildApp에서는 전달받은 props인 name \(App 컴포넌트에서는 this.state.myName\), handleClick 메소드를 실행시킬 수 있습니다.
-
-![Child App &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;](.gitbook/assets/2019-01-19-4.46.59.png)
-
-ChildApp 컴포넌트에서는 받은 props를 이용해서 데이터를 바인딩 시키고 메소드를 실행 시킬 수 있습니다.
-
-여기서 한 가지 주의해야 할 점이 있다면, 우리가 어떤 Props를 전달받았는지 헷갈릴 때가 분명 있을 것 입니다. 아니면 Props를 전달해주는 컴포넌트에서 다른 이름으로 Props를 전달해 줄 수도 있습니다. 그럴 때 대비할 수 있는 방법이 DefaultProps 입니다. ChildApp 컴포넌트 내에 선언해 주세요.
-
-{% code-tabs %}
-{% code-tabs-item title="defaultProps" %}
-```javascript
-static defaultProps = {
-  name: '이름이 전달되지 않았습니다',
-  handleClick: () => {
-    console.log('Props가 전달이 되지 않았네요. 컴포넌트를 확인해 주세요');
-  }
-};
-```
-{% endcode-tabs-item %}
-{% endcode-tabs %}
-
-컴포넌트 클래스 내부에 선언합니다. 만약 제대로 된 Props가 온다면 덮어씌워지고 자동으로 사라지게 됩니다.오류 방지용 코드 입니다. 오류를 방지할 수 있는 방법에는 componentDidCatch가 있는데요, 이 메소드를 만들지 않고 defaultProps만 제대로 설정해줘도 어느 정도는 막을 수 있습니다. componentDidCatch는 다음 장에 설명하겠습니다.
-
-
+이제 리액트에 관한 대부분을 파악하셨습니다. 다음 강의에서는 리액트 컴포넌트의 생명 주기에 관해서 알아보도록 하겠습니다. 컴포넌트가 언제 생겨나고, 언제 이 코드가 HTML로 변환되는지와 같은 타이밍에 관한 내용입니다.
 

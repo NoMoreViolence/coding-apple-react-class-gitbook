@@ -13,7 +13,7 @@
 * [1강 - JS, CSS만 있고 HTML은 없나요 ?](where-is-html.md)
 * [1강 - Component Of React](component-of-react.md)
 * [1강 - JSX](1-jsx.md)
-* [1강 - Props와 State](props-and-state.md)
+* [1강 - props & state](props-and-state.md)
 * [2강 - LifeCycle Of React component](lifecycle-of-react-component.md)
 * [2강 - Optimizing of component](optimizing-of-component.md)
 * [2강 - scss note](scss-note.md)
