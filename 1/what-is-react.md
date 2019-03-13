@@ -2,7 +2,7 @@
 description: React.js 라이브러리에 관한 간단한 설명
 ---
 
-# 1강 - React가 뭐야?
+# React가 뭐야?
 
 ### 사용자의 View에만 초점을 둔 Facebook이 개발한 라이브러리
 
@@ -12,7 +12,7 @@ description: React.js 라이브러리에 관한 간단한 설명
 
 
 
-![https://reactjs.org](.gitbook/assets/2019-01-13-3.13.04.png)
+![https://reactjs.org](../.gitbook/assets/2019-01-13-3.13.04.png)
 
 리액트가 강조하는 특징인데요, 정말 말 그대로 입니다.
 

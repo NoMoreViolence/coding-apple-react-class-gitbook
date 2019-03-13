@@ -42,6 +42,8 @@ nodejs가 설치되어 있고, node 명령어가 자신의 터미널 환경변�
 
 nodejs의 모듈을 다운로드 받거나 재 다운로드를 하거나, 모듈의 버전을 기록해야만 다른 개발자간의 협업도 가능할텐데, **nodejs에서는 package.json이라는 버전 관리 파일 하나를 기준으로 관리합니다.** 이 파일이 프로젝트 내에 없다면 굳이 생성할 필요는 없습니다. 모듈 하나만 설치해도 package.json이 생기기 때문이죠. 그런데 이 package.json의 역할은 버전 관리 말고도 **특정 명령어를 매크로로서 간단하게 실행할 수 있게 해 줍니다.**
 
+{% code-tabs %}
+{% code-tabs-item title="module.json" %}
 ```javascript
 {
   "name": "javascript",
@@ -51,6 +53,10 @@ nodejs의 모듈을 다운로드 받거나 재 다운로드를 하거나, 모듈
   "scripts": {
     "start": "node index.js"
   },
+  "dependencies": {
+    "react": "0.0.1",
+    "react-dom": "1.1.1"
+  },
   "devDependencies": {
     "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -58,6 +64,8 @@ nodejs의 모듈을 다운로드 받거나 재 다운로드를 하거나, 모듈
   }
 }
 ```
+{% endcode-tabs-item %}
+{% endcode-tabs %}
 
 **개발 할때 필요한 모듈이 기록되어 있고, 어떤 버전인지도 기록되어 있습니다.** 지금 scripts json 안에 start 라는 객체 보이시나요? 이 문자열은 node index.js로 되어 있습니다. 만약 저 프로젝트 내에서 npm 명령어를 이용해서 프로젝트 루트 폴더 콘솔에서 npm start 라고 타이핑 하게 된다면, node index.js가 실행되도록 할 수 있습니다. 이런식으로 npm scripts는 관리되어지고 있습니다.
 

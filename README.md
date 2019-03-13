@@ -34,13 +34,13 @@ ES6에 대한 학습
 
 * [ ] React 기초와 맛보기 
 * [리액트를 시작하기 전에](before-start-class.md)
-* [리액트가 뭐야 ?](what-is-react.md)
-* [리액트를 왜 배우니 ?](why-learn-react.md)
+* [리액트가 뭐야 ?](1/what-is-react.md)
+* [리액트를 왜 배우니 ?](1/why-learn-react.md)
 * [CRA를 활용한 5분만에 리액트 클라이언트 앱 만들기](https://ljh86029926.gitbook.io/codingapple-react-class/create-reactapp-using-cra-5min)
-* [CRA 리액트 프로젝트 환경설정](create-reactapp-using-cra-5min.md#undefined-1)
-* [JSX 문법](1-jsx.md)
-* [컴포넌트 생성해보기](component-of-react.md)
-* [Props와 State에 대해 알아보기](props-and-state.md)
+* [CRA 리액트 프로젝트 환경설정](1/create-reactapp-using-cra-5min.md#undefined-1)
+* [JSX 문법](1/1-jsx.md)
+* [컴포넌트 생성해보기](1/component-of-react.md)
+* [Props와 State에 대해 알아보기](1/props-and-state.md)
 * [컴포넌트 생성 주기에 따른 LifeCycle API 알아보기](lifecycle-of-react-component.md)
 * 전화번호부 만들기 \(생성, 수정, 삭제, 검색\) \(시간이 된다면\) 
 * [ ] React 꾸미기
