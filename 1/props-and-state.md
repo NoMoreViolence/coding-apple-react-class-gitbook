@@ -2,7 +2,7 @@
 description: Data handling in reactjs
 ---
 
-# 1강 - props & state
+# props & state
 
 ### props & state의 개념만 이해하면 리액트가 쉬워집니다.
 
@@ -40,7 +40,7 @@ state를 더 쉽게 이해할 수 있도록 예제 한 가지를 만들어 보�
 
 ![countUp, countDown](../.gitbook/assets/2019-03-10-5.35.47.png)
 
-_\(이벤트를 등록할 때 마다, bind\(this\)를 하는 이유가 궁금하시다면, 개념 정립에 있는_ [_this_](../this.md) _글을 봐 주시길 부탁드리겠습니다.\)_ 
+_\(이벤트를 등록할 때 마다, bind\(this\)를 하는 이유가 궁금하시다면, 개념 정립에 있는_ [_this_](../undefined/this.md) _글을 봐 주시길 부탁드리겠습니다.\)_ 
 
 단순한 예제입니다. countUp메소드는 카운트를 1증가시키고, countDown메소드는 카운트를 1아래로 내려줍니다. 단지 우리가 알아야 할 것은, App컴포넌트에 생성한 state는, App컴포넌트에서만 업데이트 할 수 있다는 겁니다.
 
